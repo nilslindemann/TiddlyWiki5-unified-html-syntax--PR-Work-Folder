@@ -1,5 +1,5 @@
 {
-    "description": "Unified HTML Syntax Wiki",
+    "description": "Docs for the branch 'unified-html-syntax'",
     "plugins": [
         "tiddlywiki/tiddlyweb",
         "tiddlywiki/filesystem",
