@@ -1,0 +1,10 @@
+created: 20211020022208776
+creator: Nils
+modified: 20211020025859314
+modifier: Nils
+tags: 
+title: All WikiParser rules
+type: text/vnd.tiddlywiki
+
+<<list-links "[all[shadows]prefix[$:/core/modules/parsers/wikiparser/rules/]]">>
+

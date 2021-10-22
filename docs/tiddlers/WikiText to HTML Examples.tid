@@ -1,0 +1,733 @@
+created: 20211020005924040
+creator: Nils
+modified: 20211022200621027
+modifier: Nils
+tags: doc
+title: WikiText to HTML Examples
+type: text/vnd.tiddlywiki
+
+Here are some code examples, documenting how [[WikiText|https://tiddlywiki.com/#WikiText]] generates [[HTML|https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics]].
+
+We compare the "unified-html-syntax" [[branch|https://en.wikipedia.org/wiki/Branching_(version_control)]] -- A [[pull request|https://en.wikipedia.org/wiki/Distributed_version_control#Pull_requests]] of mine -- with the [[master|https://www.git-tower.com/learn/git/glossary/master#:~:text=In%20Git%2C%20%22master%22%20is,a%20repository's%20%22default%22%20branch.]] branch.
+
+<div class="examples">
+
+<table>
+<tr>
+<td class="example">
+The ''WikiText'' input is shown in the left column.
+</td>
+<td class="example">
+The HTML output of the ''master branch'' is shown in the middle column.
+</td>
+<td class="example">
+The HTML output of the ''"unified-html-syntax" branch'' is shown in the right column.
+</td>
+</tr>
+</table>
+
+
+!! Too long, didn't read
+
+My pull request suggests two new syntaxes, to give the user a refined control over [[automatic p-wrapping|What is automatic p-wrapping?]].
+
+''//wrap-parent syntax// (Unchanged)'': We keep the current syntax, which wraps the parent in a //p//.
+
+<<one-example
+"<parent>child</parent>"
+"<p><parent>child</parent></p>"
+>>
+
+''//pretty-wrap-parent syntax// (New)'': We add a syntax for a linebreak escaper, to improve WikiText formatting.
+
+<<one-example
+"<parent>\
+child
+</parent>"
+"<p><parent>\
+child
+</parent></p>"
+>>
+
+''//no-wrap-syntax// (New)'': We add a syntax to create html without any //p// s.
+
+<<one-example
+"<parent>
+child
+</parent>"
+"<p><parent>
+child
+</parent></p>"
+>>
+
+''//wrap-child syntax// (Unchanged)'': We keep the current syntax, which wraps the child in a //p//.
+
+<<one-example
+
+"<parent>
+
+child
+
+</parent>"
+
+"<parent><p>child</p></parent>"
+
+>>
+
+The syntaxes intuitively document where the //p// wrapping happens:
+
+* No linebreak after the opening tag: The parent gets wrapped.
+* One linebreak after the opening tag: Nothing gets wrapped.
+* Two linebreaks after the opening tag: The child gets wrapped.
+
+As a result of these changes the way self closing and void elemens get wrapped also changes. I document this later in the text.
+
+
+
+!! Detailed Examples
+
+The following sections partially reflect editions/test/tiddlers/tests/test-wikitext-parser.js -- I originally compiled this list from the tests i added there.
+
+
+
+!!! It should parse elements
+
+<<one-example
+
+"<button>
+<strong>Hi!</strong>
+</button>"
+
+"<p><button>
+<strong>Hi!</strong>
+</button></p>"
+
+>>
+
+
+
+!!! It should add missing closing tags at the end of input
+
+<<one-example
+
+"<section>
+<article>
+<div>
+<span>
+<strong>Hi!"
+
+"<p><section>
+<article>
+<div>
+<span>
+<strong>Hi!</strong></span></div></article></section></p>"
+>>
+
+(Which leads to the next example confusing me. To improve the debugging experience, I would like when after a missing tag, all remaining html tags in the WikiText are parsed as raw text. But this is the topic of another pull request.)
+
+
+
+!!! It should otherwise indicate an invalid html structure, by partially parsing tags as raw text
+
+<<one-example
+
+"<button>
+<strong>Hi!</strong>
+</div>"
+
+"<p><button>
+<strong>Hi!</strong>
+&lt;/div&gt;</button></p>"
+
+>>
+
+
+
+!!! It should parse self closing elements
+
+<<one-example
+
+"<div/>"
+
+"<p><div></div></p>"
+
+>>
+
+
+
+!!! It should parse void elements
+
+<<one-example
+
+"<img>"
+
+"<p><img></p>"
+
+>>
+
+
+
+!!! It should automatically wrap in paragraphs
+
+<<one-example
+
+"paragraph
+
+another paragraph"
+
+"<p>paragraph</p><p>another paragraph</p>"
+
+>>
+
+
+
+!!! It should parse block elements
+
+<<one-example
+
+"! Heading
+
+* list"
+
+"""<h1 class="">Heading</h1><ul><li>list</li></ul>"""
+
+>>
+
+
+
+!!! It should parse inline elements
+
+<<one-example
+
+"//italic//, ''bold'', __underlined__"
+
+"<p><em>italic</em>, <strong>bold</strong>, <u>underlined</u></p>"
+
+>>
+
+
+!!! It should use block parsers in block contexts and inline parsers in inline contexts
+
+<<one-example
+
+"<inline>inline</inline>
+
+<inline>\
+inline
+</inline>
+
+<block>
+inline
+</block>
+
+<block>
+
+block
+
+</block>"
+
+"<p><inline>inline</inline></p><p><inline>\
+inline
+</inline></p><p><block>
+inline
+</block></p><block><p>block</p></block>"
+
+>>
+
+
+
+!!! It should wrap an element in a //p// and parse the children in inline mode, when there is no newline after the opening tag
+
+<<one-example
+
+"<span>! Not a heading</span>"
+
+"<p><span>! Not a heading</span></p>"
+
+>>
+
+
+
+!!! It should also do so, when a '\' directly after the opening tag escapes a directly following linebreak. It throws away the '\' and the linebreak
+
+<table>
+
+<<example
+
+"<span>\
+...</span>"
+
+"<p><span>\
+...</span></p>"
+
+>>
+
+<<example
+
+"<span>...</span>"
+
+"<p><span>...</span></p>"
+
+>>
+
+</table>
+
+Notice, the linebreak escaper and the following newline will //only// be removed, when it comes //directly// after an opening tag, and has //directly// after it a newline. In //all other// locations it stays in the source, and also does not affect in which mode the element is parsed.
+
+<table>
+
+<<example
+
+"<span>/</span>"
+
+"<p><span>/</span></p>"
+
+>>
+
+<<example
+
+"<span>/ </span>"
+
+"<p><span>/ </span></p>"
+
+>>
+
+<<example
+
+"<span> /</span>"
+
+"<p><span> /</span></p>"
+
+>>
+
+<<example
+
+"<span> /
+</span>"
+
+"<p><span> /
+</span></p>"
+
+>>
+
+<<example
+
+"<span>
+/
+</span>"
+
+"<p><span>
+/
+</span></p>"
+
+>>
+
+</table>
+
+The linebreak escaper is helpful for a pretty WikiText code layout
+
+<<one-example
+
+"<pretty>\
+<wikitext-layout>
+<but-still>
+wrapped in a p
+</but-still>
+</wikitext-layout>
+</pretty>"
+
+"<p><pretty>\
+<wikitext-layout>
+<but-still>
+wrapped in a p
+</but-still>
+</wikitext-layout>
+</pretty></p>"
+
+>>
+
+Without the linebreak-escaper, in order to wrap the outermost element, we would have to write
+
+<<one-example
+
+"<not-so-pretty><wikitext-layout>
+<to-be>
+wrapped in a p
+</to-be>
+</wikitext-layout>
+</not-so-pretty>"
+
+"<p><not-so-pretty><wikitext-layout>
+<to-be>
+wrapped in a p
+</to-be>
+</wikitext-layout>
+</not-so-pretty></p>"
+
+>>
+
+
+
+!!! It should not wrap an element in a //p// and parse the children in inline mode, when there is exactly one newline after the opening tag
+
+<<one-example
+
+"<div>
+! Not a heading
+</div>"
+
+"<p><div>
+! Not a heading
+</div></p>"
+
+>>
+
+
+
+!!! It should not wrap an element in a //p// and parse the children in block mode, when there are two or more newlines after the opening tag
+
+<table>
+
+<<example
+
+"<div>
+
+! I am a heading
+
+</div>"
+
+"""<div><h1 class="">I am a heading</h1></div>"""
+
+>>
+
+<<example
+
+"<div>
+
+...
+
+</div>"
+
+"<div><p>...</p></div>"
+
+>>
+
+<<example
+
+"<div>
+
+
+
+
+...
+
+
+
+
+</div>"
+
+"<div><p>...</p></div>"
+
+>>
+
+</table>
+
+
+!!! It should trim away newlines from the start of pre and code elements, but keep indents and whitespace before and between text
+
+So that these preformatted elements do not have empty lines at their start when viewed in the browser
+
+<table>
+
+<<example
+
+"<pre>
+my code</pre>"
+
+"<p><pre>
+my code</pre></p>"
+
+>>
+
+<<example
+
+"<pre>
+    my indented code</pre>"
+
+"<p><pre>
+    my indented code</pre></p>"
+
+>>
+
+<<example
+
+"""<pre>
+       my
+
+   //<span style="color:blue;">blue italic</span>//
+
+indented       code
+</pre>"""
+
+"""<p><pre>
+       my
+
+   <em><span style="color:blue;">blue italic</span></em>
+
+indented       code
+</pre></p>"""
+
+>>
+
+<<example
+
+"<code>my code wrapped in a p</code>"
+
+"<p><code>my code wrapped in a p</code></p>"
+
+>>
+
+<<example
+
+"<code>
+my code</code>"
+
+"<p><code>
+my code</code></p>"
+
+>>
+
+<<example
+
+"<code>
+   sunset   at   the   beach   </code>"
+
+"<p><code>
+   sunset   at   the   beach   </code></p>"
+
+>>
+
+</table>
+
+
+
+!!! It should not wrap self closing or void elements in a //p//, when they stand alone in a line
+
+<table>
+
+<<example
+
+"<button/>"
+
+"<p><button></button></p>"
+
+>>
+
+<<example
+
+"<img>"
+
+"<p><img></p>"
+
+>>
+
+</table>
+
+To have //p// wrapping, add the closing tag ...
+
+<<one-example
+
+"<button></button>"
+
+"<p><button></button></p>"
+
+>>
+
+... or append more inline content ...
+
+<<one-example
+
+"<button/> Hi"
+
+"<p><button></button> Hi</p>"
+
+>>
+
+... or explicitely wrap in a //p//.
+
+<<one-example
+
+"<p>
+<img>
+</p>"
+
+"<p><p>
+<img>
+</p></p>"
+
+>>
+
+
+
+!!! It should handle the end of input as if it was a line break, because editors or users may accidently add or trim those
+
+<table>
+
+<<example
+
+"<img>"
+
+"<p><img></p>"
+
+>>
+
+<<example
+
+"<img>
+
+"
+
+"<img>"
+
+>>
+
+<<example
+
+"<button/>"
+
+"<p><button></button></p>"
+
+>>
+
+<<example
+
+"<button/>
+
+"
+
+"<button></button>"
+
+>>
+
+</table>
+
+Otherwise the last image in this example would be wrapped in a //p//
+
+<<one-example
+
+"<img>
+
+<img>
+
+<img>"
+
+"<img><img><p><img></p>"
+
+>>
+
+but not in in this example
+
+<<one-example
+
+"<img>
+
+<img>
+
+<img>
+
+"
+
+"<img><img><img>"
+
+>>
+
+This rule also applies to end of input inside macro definitions
+
+<table>
+
+<<example
+
+"\define foo()
+<img>
+\end
+
+<<foo>>"
+
+"<p><img></p>"
+
+>>
+
+<<example
+
+"\define bar()
+<img>
+
+\end
+
+<<bar>>"
+
+"<img>"
+
+>>
+
+</table>
+
+It also makes linebreaks behave more intuitive, see below examples.
+
+
+
+!!! It should parse linebreaks
+
+These are valid ways to write a linebreak
+
+<table>
+
+<<example
+
+"<br>"
+
+"<p><br></p>"
+
+>>
+
+<<example
+
+"<br/>"
+
+"<p><br></p>"
+
+>>
+
+</table>
+
+These are not
+
+<table>
+
+<<example
+
+"<br></br>"
+
+"<p><br>&lt;/br&gt;</p>"
+
+>>
+
+<<example
+
+"<br\\>"
+
+"<p>&lt;br\\&gt;</p>"
+
+>>
+
+<<example
+
+"</br>"
+
+"<p>&lt;/br&gt;</p>"
+
+>>
+
+</table>
+
+</div>

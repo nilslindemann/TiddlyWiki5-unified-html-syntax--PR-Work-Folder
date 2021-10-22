@@ -1,0 +1,55 @@
+created: 20211021213627744
+modified: 20211022195838580
+tags: doc
+title: What is automatic p-wrapping?
+type: text/vnd.tiddlywiki
+
+//Automatic p-wrapping// is when the wikiparser (like most [[markdown|https://en.wikipedia.org/wiki/Lightweight_markup_language]] parsers) converts blocks of [[WikiText|https://tiddlywiki.com/#WikiText]], separated by empty lines, to [[HTML paragraphs|https://www.w3schools.com/html/html_paragraphs.asp]].
+
+We can put this text into a [[Tiddler|https://tiddlywiki.com/#Tiddlers]]:
+
+```
+Hello World!
+
+Today is a nice day.
+
+Time to write some text!
+```
+
+and the wikiparser creates this HTML (prettyprinted)
+
+```
+<p>Hello World!</p>
+
+<p>Today is a nice day.</p>
+
+<p>Time to write some text!</p>
+```
+
+which the webbrowser will display as
+
+<div style="border:1px solid silver; padding: 0 1em;">
+
+Hello World!
+
+Today is a nice day.
+
+Time to write some text!
+
+</div>
+
+Without the added HTML paragraphs, the browser would instead show a single line of text <<fnote "
+
+It does so, because it [[compresses whitespace|https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace]].
+
+">>
+
+<div style="border:1px solid silver; padding: 0 1em;">
+
+Hello World! Today is a nice day. Time to write some text!
+
+</div>
+
+which does not reflect how we wrote this text into the Tiddler.
+
+My pull request targets an issue arising from this, which is, that block elements like //divs// get wrapped in //p//'s in the html output, which is not valid html according to the HTML standard.

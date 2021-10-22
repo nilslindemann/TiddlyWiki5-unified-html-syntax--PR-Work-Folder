@@ -1,0 +1,38 @@
+created: 20211021022736297
+modified: 20211022004823735
+tags: $:/tags/Macro meta
+title: Macros
+type: text/vnd.tiddlywiki
+
+\define example(wikitext:"nothing" masterbranchoutput:"nothing")
+<tr>
+<td class="wikitext example">
+
+```
+$wikitext$
+```
+
+</td>
+<td class="masterbranch output example">
+
+```
+$masterbranchoutput$
+```
+
+</td>
+<td class="featurebranch output example">
+
+$$$text/vnd.tiddlywiki>text/html
+$wikitext$
+$$$
+
+</td>
+</tr>
+
+\end
+
+\define one-example(wikitext:"nothing" masterbranchoutput:"nothing")
+<table>
+<$macrocall $name="example" wikitext=<<__wikitext__>> masterbranchoutput=<<__masterbranchoutput__>>/>
+</table>
+\end

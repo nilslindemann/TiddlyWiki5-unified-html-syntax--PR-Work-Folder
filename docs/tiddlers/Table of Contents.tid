@@ -1,0 +1,21 @@
+created: 20211020011038050
+creator: Nils
+icon: $:/favicon.ico
+modified: 20211022200005983
+modifier: Nils
+tags: 
+title: Table of Contents
+type: text/vnd.tiddlywiki
+
+This wiki serves as a documentation for my pull request "unified-html-syntax" for the [[TiddlyWiki|https://tiddlywiki.com/]] Codebase.
+
+<<list-links "[tag[doc]!is[system]sort[created]]">>
+
+These are meta tiddlers I created:
+
+<<list-links "[tag[meta]sort[created]]">>
+
+Credits go to [[kookmas|https://github.com/kookma]] for his [[refnotes|$:/plugins/kookma/refnotes]] plugin, which i use in this Wiki.
+
+//I put the contents of this wiki into the Public Domain -- [[Nils]] 2021-10-22//
+

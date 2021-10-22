@@ -1,0 +1,45 @@
+.examples table {
+    border: 0;
+    width: 100%;
+}
+
+.examples th,
+.examples td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: white;
+    text-align: left;
+    vertical-align: top;
+}
+
+.examples th {
+    font-weight: normal;
+    padding-bottom: 1em;
+}
+
+.examples .example {
+    width: 33%;
+    padding-right: 1.5em;
+}
+
+.examples .featurebranch.example {
+    padding-right: 0;
+}
+
+.examples .example pre {
+    margin-top: 0;
+}
+
+.examples tr:last-child .example pre {
+    margin-bottom: 0;
+}
+
+.examples p + table tr:first-child .example pre {
+    margin-top: 0;
+}
+
+.examples .output pre {
+    background: white;
+    color: steelblue;
+}
