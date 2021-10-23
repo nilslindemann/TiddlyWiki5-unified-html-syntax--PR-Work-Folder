@@ -1,6 +1,6 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211022200621027
+modified: 20211023025704714
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
@@ -8,7 +8,7 @@ type: text/vnd.tiddlywiki
 
 Here are some code examples, documenting how [[WikiText|https://tiddlywiki.com/#WikiText]] generates [[HTML|https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics]].
 
-We compare the "unified-html-syntax" [[branch|https://en.wikipedia.org/wiki/Branching_(version_control)]] -- A [[pull request|https://en.wikipedia.org/wiki/Distributed_version_control#Pull_requests]] of mine -- with the [[master|https://www.git-tower.com/learn/git/glossary/master#:~:text=In%20Git%2C%20%22master%22%20is,a%20repository's%20%22default%22%20branch.]] branch.
+We compare the [[unified-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6135]] [[branch|https://en.wikipedia.org/wiki/Branching_(version_control)]] -- A [[pull request|https://en.wikipedia.org/wiki/Distributed_version_control#Pull_requests]] of mine -- with the [[master|https://www.git-tower.com/learn/git/glossary/master#:~:text=In%20Git%2C%20%22master%22%20is,a%20repository's%20%22default%22%20branch.]] branch.
 
 <div class="examples">
 
