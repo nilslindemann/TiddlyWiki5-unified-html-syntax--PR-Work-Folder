@@ -1,6 +1,6 @@
 created: 20211020015607830
 creator: Nils
-modified: 20211022195859542
+modified: 20211023053836249
 modifier: Nils
 tags: doc
 title: How The Wiki Parser Works
@@ -16,17 +16,9 @@ I don't understand much about how the parser works
 
 ---
 
-The `WikiParser` constructor creates -- in an unusual way <<fnote """
+The `WikiParser` constructor <<fnote """
 
-This is the way Jeremy Ruston once made TiddlyWiki work in the browser: Tiddlers are converted to classes. Later it became the way how it works in Node.js: files are converted to classes.
-
-The filesystem describes how the parser works.
-
-This is not the same as manually importing the modules from JavaScript code. They are automatically loaded when they exist.
-
-""">> -- a class from the module [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]]. <<fnote """
-
-`WikiParser` is defined in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]].
+Defined in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]].
 
 """>>^^,^^ <<fnote """
 
@@ -36,7 +28,15 @@ Constructors contain `this.foo = ...` definitions, where `this` refers to the cu
 
 To construct an object using a constructor, the [[new|https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new]] keyword has to be used, e.g. <code>var myparser = //new// WikiParser(...)</code>.
 
-""">>. It does so for each module under [[core/modules/parsers/wikiparser/rules|All WikiParser rules]] <<fnote """
+""">> creates -- in an unusual way <<fnote """
+
+This is the way Jeremy Ruston once made TiddlyWiki work in the browser: Tiddlers are converted to classes. Later it became the way how it works in Node.js: files are converted to classes.
+
+The filesystem describes how the parser works.
+
+This is not the same as manually importing the modules from JavaScript code. They are automatically loaded when they exist.
+
+""">> -- a class from the module [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]]. It does so for each module under [[core/modules/parsers/wikiparser/rules|All WikiParser rules]] <<fnote """
 
 To be precise, only when they are [[enabled|$:/core/ui/ControlPanel/Parsing]] and when they are needed in this WikiText (more about this later).
 
@@ -80,35 +80,35 @@ For example, the span in `<span>...</span>` is WikiText //inline// html (it gets
 
 Meanwhile , the [[HTML5 standard|https://dev.w3.org/html5/html-author/#categories]] uses different words, like "phrasing content" and "flow content".
 
-""">>. It does so, because `exports.types` contains both `"inline": true` and `"block": true` <<fnote "
+""">>. It does so, because `exports.types` <<fnote "
 
-`exports.types` is defined at the top of [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]].
+Defined at the top of [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]].
 
-">>.
+">> contains both `"inline": true` and `"block": true`.
 
-When instantiating rules (by calling `instantiateRules`), `WikiParser` first instantiates all rules for [[pragmas|https://tiddlywiki.com/#Pragma]], then the rules for block elements, then the rules for inline elements. So the block html rule is instantiated before the inline html rule <<fnote "
+When instantiating rules, by calling `instantiateRules` <<fnote "
 
-`instantiateRules` is defined in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]].
+Defined in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]].
 
-">>.
+">>, `WikiParser` first instantiates all rules for [[pragmas|https://tiddlywiki.com/#Pragma]], then the rules for block elements, then the rules for inline elements. So the block html rule is instantiated before the inline html rule.
 
 While instantiating the block html rule in `instantiateRules`, `rule.findNextMatch` gets called. That is the `findNextMatch` function in [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]] <<fnote "
 
-`rule` is the name for the class instance, which represents the [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]] module.
+`rule` is the name for the class which represents the [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]] module.
 
-">>. This is done in order to test if the rule is actually needed in this WikiText. <<fnote "
+">>. This is done in order to test if the rule is actually needed in this WikiText <<fnote "
 
 Actually I am not sure if this is true. At least the parser which generates the live preview when editing tiddlers can not work this way, because the user may later add this construct and then the parser would not know it.
 
-">>
+">>.
 
 `findNextMatch` calls `findNextTag` <<fnote "
 
 Defined in [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]].
 
-">> with `requireLineBreak` == true, because `this.is.block` was defined to be true in  `instantiateRules`.
+">> with `requireLineBreak` == true, because `this.is.block` was defined to be true in `instantiateRules` (because we are currently instantiating block rules there).
 
-When finding something which seems to be an opening tag <<fnote """
+When finding something which seems to be the start of an opening tag <<fnote """
 
 For the records, in `<h1>Hi</h1>`
 
@@ -128,16 +128,16 @@ Defined in [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]].
 
 When `parseTag` finds an actual opening tag, then (because `requireLineBreak` is true) it checks if there is at least ''one'' line break after the opening tag.
 
-If there is no line break, `parseTag` returns `null`. The html construct is then later parsed using the inline html rule, still to be initialized. //p// wrapping may happen.
+If there is no line break, `parseTag` returns `null`. The html construct is then later parsed using the inline html rule (which still needs to be initialized). //p// wrapping may happen.
 
 But if there is a line break, `parseTag` returns an [[object|https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics]] to `findNextTag`, and `findNextTag` returns it to `findNextMatch`. The object has the start position of the opening tag. `findNextMatch` returns that start position to `instantiateRules`.
 
 `instantiateRules` returns an [[array|https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array]] of objects to the `WikiParser` constructor. Each object in the array contains
 
-* an initialized block rule
-* the start position of the first match which that rule found
+* an initialized rule, e.g. the block html rule
+* the start position of the first match which the rule found, here the start position of an opening tag, returned from `findNextMatch`.
 
-If no start position was found, then the rule is not contained in the array. So, one of those objects may contain the block html rule and the start position returned from `findNextMatch` (the position before the opening tag).
+If a rule found no start position, it is not contained in the array.
 
 `WikiParser` then instantiates the inline rules, which works in a comparable  way.
 
@@ -149,9 +149,9 @@ Defined in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]].
 
 `parsePragmas` -- as the name suggests -- only parses the pragmas found at the start of the WikiText. It puts the results into a //parse tree// <<fnote """
 
-A //parse tree// is an [[array|https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array]] of vanilla `"key" : <value>` [[objects|https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics]].
+A //parse tree// is an [[array|https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Global_Objects/Array]] containing zero or more vanilla `"key" : <value>` [[objects|https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics]].
 
-Each object can have a key `"children"`, which may contain sub parse trees.
+Each object can have a key `"children"`, which holds a sub parse tree.
 
 """>>^^,^^ <<fnote """
 
