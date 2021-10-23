@@ -1,6 +1,6 @@
 echo off
 
-echo EXPORT TESTWIKI
+echo EXPORT WIKI
 
 echo Export to a single-file wiki ...
 node ../../TiddlyWiki5/tiddlywiki.js ../docs --rendertiddler $:/core/save/all singlefile.html text/plain

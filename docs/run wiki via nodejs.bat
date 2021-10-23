@@ -1,3 +1,3 @@
 echo off
-echo RUN SERVER
+echo RUN WIKI VIA NODE.JS
 node ../../TiddlyWiki5/tiddlywiki.js ../docs --listen
