@@ -1,13 +1,13 @@
 Nils' private notes, to be used with Nils' private modified Code Browser instance.
 
 Changes made in the source
-# (GOTO) :Change regex (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=135
+# (GOTO) :Change regex (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=136
 # (GOTO) :Add 2 css rules (base.tid):../TiddlyWiki5/themes/tiddlywiki/vanilla/base.tid?ln=890
-# (GOTO) :Define WikiParser.prototype.skip (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=154
+# (GOTO) :Define WikiParser.prototype.skip (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=162
 # (GOTO) :Define WikiParser.prototype.skipNewlines (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=183
-# (GOTO) :Skip newlines at start of <pre>'s and <code>'s (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=59
-# (GOTO) :Define WikiParser.prototype.skipLinebreakEscaper (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=191
-# (GOTO) :Skip linebreak escaper (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=51
+# (GOTO) :Skip newlines at start of <pre>'s and <code>'s (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=61
+# (GOTO) :Define WikiParser.prototype.skipEscapedLinebreak (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=190
+# (GOTO) :Skip escaped linebreak (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=51
 
 Diffing
 # (GOTO) :masterbranch export.bat:diffing/masterbranch export.bat
@@ -16,14 +16,17 @@ Diffing
 # (GOTO) :treesearcher searches.py:../../run/code/treesearcher/searches.py
 
 Doc
-# (GOTO) :run server.bat:docs/run server.bat
-# (GOTO) :export.bat:docs/export.bat
+# (GOTO) :run wiki via nodejs.bat:docs/run wiki via nodejs.bat
+# (GOTO) :export wiki.bat:docs/export wiki.bat
 # (GOTO) :Add "tiddlywiki/internals":docs/tiddlywiki.info?ln=7
-How do i export a single page wiki, so that Tiddlers have the
-edit button?
+Q: How do i export a single page wiki, so that Tiddlers have the edit
+   button?
+A: Remove "tiddlywiki/tiddlyweb" and "tiddlywiki/filesystem" from the
+   tiddlywiki.info
 
-Testing
-# (GOTO) :run tests.bat:run tests.bat
+
+Tests
+# (GOTO) :run all tiddlywiki tests.bat:run all tiddlywiki tests.bat
 # (GOTO) :test-wikitext-parser.js:../tiddlywiki5/editions/test/tiddlers/tests/test-wikitext-parser.js
 
 TBD
