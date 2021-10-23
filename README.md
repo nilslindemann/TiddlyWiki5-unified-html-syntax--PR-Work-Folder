@@ -1,4 +1,6 @@
-This is the work folder for my [unified-html-syntax](https://github.com/Jermolene/TiddlyWiki5/pull/6135) pull request for [TiddlyWiki](https://github.com/Jermolene/TiddlyWiki5). For the batches to work, make sure you have [my fork of the TiddlyWiki codebase](https://github.com/nilslindemann/TiddlyWiki5) locally available. Do not change the name of the _TiddlyWiki5_ folder, and put this work folder aside of it. Alternatively, edit the relative links in the batches contained here.
+This is the work folder for my [unified-html-syntax](https://github.com/Jermolene/TiddlyWiki5/pull/6135) pull request for [TiddlyWiki](https://github.com/Jermolene/TiddlyWiki5).
+
+For the batches inside of _diffing_ and _doc_ to work, make sure you have [my fork of the TiddlyWiki codebase](https://github.com/nilslindemann/TiddlyWiki5) locally available. Do not change the name of the _TiddlyWiki5_ folder, and put this work folder aside of it. Alternatively, edit the relative links in the batches.
 
 The _diffing_ folder has a README explaining how to create static versions of the [tw5.com](https://tiddlywiki.com/) wiki, in order to [diff](https://winmerge.org/) them. I did this to see if unexpected things break, and I am sure that they don't, at least not in the tw5.com wiki. I did not diff all other wikis contained in _TiddlyWiki5/editions_. That will take a long while. When [Jermolene](https://github.com/Jermolene) gives his OK for this pull request, I am willing to do that.
 
