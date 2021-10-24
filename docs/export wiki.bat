@@ -1,16 +1,20 @@
 echo off
 
-echo EXPORT "DOCS" WIKI TO SINGLE-FILE AND STATIC WIKIS
+echo EXPORT "DOCS" WIKI TO SINGLE FILE
+
+echo ***********************************************************
+echo Please make sure the "UNIFIED-HTML-SYNTAX" branch is active
+echo ***********************************************************
 
 echo Export to a single-file wiki ...
 node ../../TiddlyWiki5/tiddlywiki.js ../docs --rendertiddler $:/core/save/all singlefile.html text/plain
 echo ... done
 
-echo Export to a static html file ...
-node ../../TiddlyWiki5/tiddlywiki.js ../docs --rendertiddler $:/core/templates/alltiddlers.template.html static.html text/plain
-echo ... done
+REM  (NOTE) ~ echo Export to a static html file ...
+REM  (NOTE) ~ node ../../TiddlyWiki5/tiddlywiki.js ../docs --rendertiddler $:/core/templates/alltiddlers.template.html static.html text/plain
+REM  (NOTE) ~ echo ... done
 
-echo Move the exported files to this folder ...
+echo Move the exported file to this folder ...
 move output\*.* . > NUL
 rmdir output
 echo ... done
