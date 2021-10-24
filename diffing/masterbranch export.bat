@@ -1,5 +1,7 @@
 echo off
 
+echo EXPORT TW5.COM WIKI TO SINGLE-FILE AND STATIC WIKIS
+
 echo ********************************************
 echo Please make sure the master branch is active
 echo ********************************************
@@ -18,4 +20,6 @@ rmdir ..\..\TiddlyWiki5\editions\tw5.com\output
 echo ... done
 
 echo DONE
+
+REM  (NOTE) Wait for three seconds before closing this commandline window
 timeout /t 3 > NUL

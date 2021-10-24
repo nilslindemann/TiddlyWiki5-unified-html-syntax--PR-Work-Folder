@@ -1,6 +1,6 @@
 echo off
 
-echo EXPORT WIKI
+echo EXPORT "DOCS" WIKI TO SINGLE-FILE AND STATIC WIKIS
 
 echo Export to a single-file wiki ...
 node ../../TiddlyWiki5/tiddlywiki.js ../docs --rendertiddler $:/core/save/all singlefile.html text/plain
@@ -16,4 +16,6 @@ rmdir output
 echo ... done
 
 echo DONE
+
+REM  (NOTE) Wait for three seconds before closing this commandline window
 timeout /t 3 > NUL
