@@ -1,9 +1,9 @@
 echo off
 
-echo EXPORT TW5.COM WIKI TO SINGLE-FILE AND STATIC WIKIS
+echo EXPORT TW5.COM WIKI TO SINGLE FILE AND SINGLE STATIC HTML FILE
 
 echo ********************************************
-echo Please make sure the master branch is active
+echo Please make sure the MASTER BRANCH is active
 echo ********************************************
 
 echo Export the "tw5.com" wiki to a single-file wiki (takes a few seconds) ...
