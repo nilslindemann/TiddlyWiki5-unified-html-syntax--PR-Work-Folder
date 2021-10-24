@@ -1,10 +1,10 @@
 created: 20211021213627744
-modified: 20211022195838580
+modified: 20211024211502490
 tags: doc
-title: What is automatic p-wrapping?
+title: What is automatic paragraph wrapping?
 type: text/vnd.tiddlywiki
 
-//Automatic p-wrapping// is when the wikiparser (like most [[markdown|https://en.wikipedia.org/wiki/Lightweight_markup_language]] parsers) converts blocks of [[WikiText|https://tiddlywiki.com/#WikiText]], separated by empty lines, to [[HTML paragraphs|https://www.w3schools.com/html/html_paragraphs.asp]].
+//Automatic paragraph wrapping// is when the wikiparser (like most [[markdown|https://en.wikipedia.org/wiki/Lightweight_markup_language]] parsers) converts blocks of [[WikiText|https://tiddlywiki.com/#WikiText]], separated by empty lines, to [[HTML paragraphs|https://www.w3schools.com/html/html_paragraphs.asp]].
 
 We can put this text into a [[Tiddler|https://tiddlywiki.com/#Tiddlers]]:
 
@@ -52,4 +52,4 @@ Hello World! Today is a nice day. Time to write some text!
 
 which does not reflect how we wrote this text into the Tiddler.
 
-My pull request targets an issue arising from this, which is, that block elements like //divs// get wrapped in //p//'s in the html output, which is not valid html according to the HTML standard.
+My pull request targets an issue arising from this, which is, that block elements like //div//s get wrapped in paragraphs in the html output, which is not valid html according to the HTML standard.
