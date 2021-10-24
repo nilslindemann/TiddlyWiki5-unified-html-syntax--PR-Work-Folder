@@ -133,11 +133,11 @@ with stay_open_on_error ():
         remove('<style>...</style>',
             r'<style \s .+? </style>', regex.DOTALL
         )
-        
+
         remove('<script>...</script>',
             r'<script \s .+? </script>', regex.DOTALL
         )
-        
+
         remove('<svg>...</svg>',
             r'<svg \s .+? </svg>' , regex.DOTALL
         )
@@ -159,7 +159,7 @@ with stay_open_on_error ():
                 &quot; (?!&quot;) .*? (?<!&quot;) &quot; (?!&quot;) (*PRUNE)
             ''',regex.DOTALL
         )
-        
+
         remove('"" attributes from escaped html',
             r'''
                 \s+ [$a-zA-Z] (?: -? [a-zA-Z0-9]+ )*    (*PRUNE)
@@ -167,7 +167,7 @@ with stay_open_on_error ():
                 &quot; \s* &quot; (?!&quot;)    (*PRUNE)
             ''', regex.DOTALL
         )
-        # (NOTE) 
+
         # (CLOSE)
         # (OPEN) :Linebreak escapers
         if isnew:
@@ -177,7 +177,7 @@ with stay_open_on_error ():
         # (CLOSE)
         # (OPEN) :Remove empty p´s
         if not isnew:
-        
+
         # (NOTE)     Those get eg. created by the navigator widget in the Tiddler
         # (NOTE)     'Creating SubStories'.
             remove('empty p´s (only masterbranch)',
@@ -186,7 +186,7 @@ with stay_open_on_error ():
         # (CLOSE)
         # (OPEN) :Remove invalid p´s wrapping blockelements from the old wiki
         if not isnew and not show_invalid_ps_in_masterbranch:
-        
+
         # (NOTE)     We can not do this using regexes because eg it will not catch (but
         # (NOTE)     should) ...
         # (NOTE)         <p>
@@ -194,9 +194,9 @@ with stay_open_on_error ():
         # (NOTE)         <div></div>
         # (NOTE)         </p>
         # (NOTE)     ... so instead we use a mini parser.
-            
+
             print('  Remove p´s we dont want from old wiki')
-            
+
             blockelems = (
                 '(?:div|ul|ol|dl|table|tr|td|h[1-6]|p|pre|style|blockquote)'
             )
@@ -204,7 +204,7 @@ with stay_open_on_error ():
             p_locations = [0]
             # (OPEN) :pat
             pat = regex.compile(r'''
-            
+
                 (<\s*!\s*doctype\s+html\s*>)        # doctype – doctype tag
                 |
                 (<''' + blockelems + r'''>)         # O - blockelement opener
@@ -229,16 +229,16 @@ with stay_open_on_error ():
             # (OPEN) :handler
             def handler(match):
                 nonlocal cleaned, p_locations
-            
+
                 # See description in the pattern definition
                 doctype, O, C, S, v, o, c, s, other, error = match.groups()
-            
+
                 if O is not None:
                     cleaned.append(O)
                     cleaned[p_locations[-1]] = ''
                     if O == '<p>':
                         p_locations.append(len(cleaned)-1)
-            
+
                 elif C is not None:
                     if C == '</p>':
                         if cleaned[p_locations[-1]]:
@@ -246,22 +246,22 @@ with stay_open_on_error ():
                         p_locations.pop()
                     else:
                         cleaned.append(C)
-            
+
                 elif S is not None:
                     cleaned[p_locations[-1]] = ''
                     cleaned.append(S)
-            
+
                 elif v is not None: cleaned.append(v)
-            
+
                 elif error is not None:
                     raise Exception(error)
-            
+
                 elif doctype is not None: cleaned.append(doctype)
                 elif o is not None: cleaned.append(o)
                 elif c is not None: cleaned.append(c)
                 elif s is not None: cleaned.append(s)
                 elif other is not None: cleaned.append(other)
-            
+
                 return match[0]
             # (CLOSE)
             pat.sub(handler, text)
@@ -272,12 +272,12 @@ with stay_open_on_error ():
         # (NOTE) the images are not wrapped in ps (which is ok, as the images are
         # (NOTE) represented inline). I remove this change from the diff, because
         # (NOTE) there are quite a lot of such, which disturbs the diffing.
-        
+
         replace("Remove wrapping p's from images in 'image-picker Macro' Tiddler",
             r'<a>\s*<p>\s*<img>\s*</p>\s*</a>',
             '<a><img></a>'
         )
-        
+
         # (CLOSE)
         # (OPEN) :Normalize whitespaces
         replace('Compress all whitespace to " "', r'\s+', ' ')
