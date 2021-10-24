@@ -1,6 +1,6 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211024212341827
+modified: 20211024215938856
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
@@ -266,7 +266,7 @@ An //escaped line break// is a backslash (`\`) followed by a newline. Both the b
 
 </table>
 
-The escaped line break will //only// be removed, when it follows //directly// after the opening tag. In all other locations it stays in the source, and does not affect in which mode the element is parsed (in the last example the span does not get wrapped in a p because of the newline after the opening tag, not because of the `\`).
+The escaped line break will //only// be removed, when it follows //directly// after the opening tag. In all other locations it stays in the source, and does not affect in which mode the element is parsed (in the last example the span stays unwrapped because of the newline after the opening tag, not because of the `\`).
 
 <table>
 
