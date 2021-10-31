@@ -7,7 +7,7 @@ tags:
 title: Table of Contents
 type: text/vnd.tiddlywiki
 
-This wiki serves as a documentation for my pull request [[unified-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6135]] for the [[TiddlyWiki|https://tiddlywiki.com/]] Codebase.
+This wiki serves as a documentation for my pull request [[refined-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] for the [[TiddlyWiki|https://tiddlywiki.com/]] codebase.
 
 <<list-links "[tag[doc]!is[system]sort[created]]">>
 

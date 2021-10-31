@@ -3,7 +3,7 @@ echo off
 echo EXPORT "DOCS" WIKI TO SINGLE FILE
 
 echo ***********************************************************
-echo Please make sure the "UNIFIED-HTML-SYNTAX" branch is active
+echo Please make sure the "REFINED-HTML-SYNTAX" branch is active
 echo ***********************************************************
 
 echo Export to a single-file wiki ...

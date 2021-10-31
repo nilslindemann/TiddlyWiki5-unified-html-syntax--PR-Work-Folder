@@ -2,9 +2,9 @@ echo off
 
 echo EXPORT TW5.COM WIKI TO SINGLE FILE AND SINGLE STATIC HTML FILE
 
-echo ***********************************************************
-echo Please make sure the "UNIFIED-HTML-SYNTAX" branch is active
-echo ***********************************************************
+echo ****************************************************
+echo Please make sure the "REFINED-HTML-SYNTAX" branch is active
+echo ****************************************************
 
 echo Export the "tw5.com" wiki to a single-file wiki (takes a few seconds) ...
 node ../../TiddlyWiki5/tiddlywiki.js ../../TiddlyWiki5/editions/tw5.com --rendertiddler $:/core/save/all "featurebranch singlefile.html" text/plain
