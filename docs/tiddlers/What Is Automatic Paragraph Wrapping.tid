@@ -1,7 +1,7 @@
 created: 20211021213627744
-modified: 20211024211502490
+modified: 20211031105629569
 tags: doc
-title: What is automatic paragraph wrapping?
+title: What Is Automatic Paragraph Wrapping?
 type: text/vnd.tiddlywiki
 
 //Automatic paragraph wrapping// is when the wikiparser (like most [[markdown|https://en.wikipedia.org/wiki/Lightweight_markup_language]] parsers) converts blocks of [[WikiText|https://tiddlywiki.com/#WikiText]], separated by empty lines, to [[HTML paragraphs|https://www.w3schools.com/html/html_paragraphs.asp]].
@@ -40,7 +40,7 @@ Time to write some text!
 
 Without the added HTML paragraphs, the browser would instead show a single line of text <<fnote "
 
-It does so, because it [[compresses whitespace|https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace]].
+Because it [[compresses whitespace|https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace]].
 
 ">>
 
@@ -52,4 +52,4 @@ Hello World! Today is a nice day. Time to write some text!
 
 which does not reflect how we wrote this text into the Tiddler.
 
-My pull request targets an issue arising from this, which is, that block elements like //div//s get wrapped in paragraphs in the html output, which is not valid html according to the HTML standard.
+My [[pull request|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] targets an issue arising from this, which is, that block elements like //div//s get wrapped in paragraphs in the HTML output, [[which is not valid|https://html.spec.whatwg.org/multipage/dom.html#phrasing-content]] according to the HTML standard.

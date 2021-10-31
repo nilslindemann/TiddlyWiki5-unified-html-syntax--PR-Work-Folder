@@ -1,7 +1,7 @@
 created: 20211020011038050
 creator: Nils
 icon: $:/favicon.ico
-modified: 20211023025638326
+modified: 20211031105515698
 modifier: Nils
 tags: 
 title: Table of Contents
@@ -15,7 +15,7 @@ These are meta tiddlers I created:
 
 <<list-links "[tag[meta]sort[created]]">>
 
-Credits go to [[kookmas|https://github.com/kookma]] for his [[refnotes|$:/plugins/kookma/refnotes]] plugin, which i use in this Wiki.
+Credits go to [[kookmas|https://github.com/kookma]] for his [[refnotes|$:/plugins/kookma/refnotes]] plugin, which I use in this wiki.
 
-//I put the contents of this wiki into the Public Domain -- [[Nils]] 2021-10-22//
+//I put the contents of this wiki into the public domain -- [[Nils]] 2021-10-31//
 

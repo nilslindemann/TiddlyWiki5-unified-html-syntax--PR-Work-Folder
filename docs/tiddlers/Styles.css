@@ -23,7 +23,7 @@
     padding-right: 1.5em;
 }
 
-.examples .featurebranch.example {
+.examples .example:last-child {
     padding-right: 0;
 }
 

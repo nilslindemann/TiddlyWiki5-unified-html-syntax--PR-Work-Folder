@@ -1,63 +1,45 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211024215938856
+modified: 20211031105715778
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
 type: text/vnd.tiddlywiki
 
-Here we compare [[HTML|https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics]] created in the TiddlyWiki master [[branch|https://en.wikipedia.org/wiki/Branching_(version_control)]] and in the [[unified-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6135]] branch, documenting the syntax.
+Here we compare [[HTML|https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics]] created in the TiddlyWiki master [[branch|https://en.wikipedia.org/wiki/Branching_(version_control)]] and in the [[refined-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] branch.
 
 <div class="examples">
 
 <table>
 <tr>
 <td class="example">
-//The WikiText is shown here//
+//The [[WikiText|https://tiddlywiki.com/#WikiText]] input is shown here//
 </td>
 <td class="example">
-//The resulting HTML in the ''master branch'' is shown here//
+//The resulting HTML output in the ''master branch'' is shown here//
 </td>
 <td class="example">
-//The resulting HTML in the ''"unified-html-syntax" branch'' is shown here//
+//The resulting HTML output in the ''"unified-html-syntax" branch'' is shown here//
 </td>
 </tr>
 </table>
 
-!! Introduction
 
-My pull request suggests ''two new syntaxes'', to give the user a refined control over [[automatic paragraph wrapping|What is automatic paragraph wrapping?]].
 
-//wrap-parent// syntax. Unchanged. We keep the current syntax, which wraps the parent in a paragraph.
+
+
+!! Current syntaxes
+
+Currently we have two syntaxes in WikiText, to let the user control, where [[automatic paragraph wrapping|What Is Automatic Paragraph Wrapping?]] happens:
+
+//Wrap Parent syntax//. Zero or one line break after the opening tag in the WikiText will wrap the parent, but not the child, in a paragraph in the HTML output:
 
 <<one-example
 "<parent>child</parent>"
 "<p><parent>child</parent></p>"
 >>
 
-//pretty-wrap-parent// syntax. ''New''. We add a syntax for an ''escaped line break'', to improve WikiText formatting.
-
-<<one-example
-"<parent>\
-child
-</parent>"
-"<p><parent>\
-child
-</parent></p>"
->>
-
-//no-wrap// syntax. ''New''. We add a syntax to create ''html without automatic paragraph wrapping''.
-
-<<one-example
-"<parent>
-child
-</parent>"
-"<p><parent>
-child
-</parent></p>"
->>
-
-//wrap-child// syntax. Unchanged. We keep the current syntax, which wraps the child in a paragraph.
+//Wrap Child syntax//. Two or more line breaks after the opening tag in the WikiText will wrap the child, but not the parent, in a paragraph in the HTML Output:
 
 <<one-example
 
@@ -71,19 +53,93 @@ child
 
 >>
 
-The syntaxes intuitively document where the paragraph wrapping happens.
+
+
+
+
+!! The problem
+
+... is, that these syntaxes alone can not generate html, where //nothing// gets wrapped in paragraphs. For example, this HTML output can currently not be generated in WikiText:
+
+<div class="output">
+
+```
+<parent>child</parent>
+```
+
+</div>
+
+
+
+
+
+!! Suggested syntax changes
+
+Therefore, my pull request suggests the following syntax changes:
+
+
+!!! Partially modified old syntaxes
+
+The Wrap Child syntax from above stays unchanged.
+
+The Wrap Parent syntax gets modified, so that it requires exactly zero line breaks after the opening tag (previously zero or one).
+
+
+!!! New //No Wrap// syntax
+
+We add a //No Wrap// syntax which gets triggered when we add exactly one line break after the opening tag (which previously triggered the Wrap Parent syntax). This allows us to create HTML output without any paragraph wrapping:
+
+<<one-example
+"<parent>
+child
+</parent>"
+"<p><parent>
+child
+</parent></p>"
+>>
+
+These three syntaxes intuitively document where the paragraph will be added in the HTML output.
 
 * ''No linebreak'' after the opening tag: The ''parent gets wrapped''.
 * ''One linebreak'' after the opening tag: ''Nothing gets wrapped''.
 * ''Two linebreaks'' after the opening tag: The ''child gets wrapped''.
 
-As a result of these changes, the way //self-closing// and //void// elements get wrapped also ''changes''. I document this later in the text.
 
-The following sections partially reflect //editions/test/tiddlers/tests/test-wikitext-parser.js// in the TiddlyWiki codebase -- I originally compiled this list from the tests I added there in my branch.
+!!! New syntax for an escaped linebreak
+
+Further, we add a syntax for an //escaped line break//:
+
+<<one-example
+"<parent>\
+child
+</parent>"
+"<p><parent>\
+child
+</parent></p>"
+>>
+
+It is syntactical sugar; It allows a pretty formatting of the html in the WikiText, while still wrapping the outermost element in a paragraph in the HTML output.
+
+
+!!! New handling of self-closing and void elements
+
+Another syntax change is, that //self-closing// and //void// elements (more infos below) do not get wrapped in paragraphs any more in the HTML output. I document later in the text how we can achieve wrapping in these cases.
+
+
+!!! Test It
+
+The syntaxes are active in this wiki and you can play around with them by creating a new Tiddler (The "plus" button on the right). Enable the HTML preview (click the "eye" icon in the edit mode, and choose "raw HTML" from the drop-down button right to it), to see which HTML output you create with your [[WikiText|https://tiddlywiki.com/#WikiText]] input.
 
 
 
-!! It should parse elements
+
+
+!! Detailed examples
+
+The following examples partially reflect //editions/test/tiddlers/tests/test-wikitext-parser.js// in the TiddlyWiki codebase -- I originally compiled this list from the tests I added there in my branch.
+
+
+!!! It should parse elements
 
 <<one-example
 
@@ -98,8 +154,7 @@ The following sections partially reflect //editions/test/tiddlers/tests/test-wik
 >>
 
 
-
-!! It should add missing closing tags at the end of input
+!!! It should add missing closing tags at the end of input
 
 <<one-example
 
@@ -119,8 +174,7 @@ The following sections partially reflect //editions/test/tiddlers/tests/test-wik
 //Which leads to the next example confusing me. To improve the debugging experience, I would like when after a missing tag all remaining html tags in the WikiText are parsed as [[HTML-escaped|https://stackoverflow.com/a/43738178]] raw text. But this is the topic of another pull request.//
 
 
-
-!! It should otherwise indicate an invalid html structure, by partially parsing tags as raw text
+!!! It should otherwise indicate an invalid html structure, by partially parsing tags as raw text
 
 <<one-example
 
@@ -135,8 +189,7 @@ The following sections partially reflect //editions/test/tiddlers/tests/test-wik
 >>
 
 
-
-!! It should parse self-closing elements
+!!! It should parse self-closing elements
 
 <<one-example
 
@@ -147,8 +200,7 @@ The following sections partially reflect //editions/test/tiddlers/tests/test-wik
 >>
 
 
-
-!! It should parse void elements
+!!! It should parse void elements
 
 <<one-example
 
@@ -159,8 +211,7 @@ The following sections partially reflect //editions/test/tiddlers/tests/test-wik
 >>
 
 
-
-!! It should automatically wrap in paragraphs
+!!! It should automatically wrap in paragraphs
 
 <<one-example
 
@@ -173,8 +224,7 @@ another paragraph"
 >>
 
 
-
-!! It should parse block elements
+!!! It should parse block elements
 
 <<one-example
 
@@ -187,8 +237,7 @@ another paragraph"
 >>
 
 
-
-!! It should parse inline elements
+!!! It should parse inline elements
 
 <<one-example
 
@@ -199,7 +248,7 @@ another paragraph"
 >>
 
 
-!! It should use block parsers in block contexts and inline parsers in inline contexts
+!!! It should use block parsers in block contexts and inline parsers in inline contexts
 
 <<one-example
 
@@ -228,8 +277,7 @@ inline
 >>
 
 
-
-!! It should wrap an element in a paragraph and parse the children in inline mode, when there is no newline after the opening tag
+!!! It should wrap an element in a paragraph and parse the children in inline mode, when there is no newline after the opening tag
 
 <<one-example
 
@@ -240,7 +288,7 @@ inline
 >>
 
 
-!! It should also do so, when an escaped line break exists after the opening tag
+!!! It should also do so, when an escaped line break exists after the opening tag
 
 An //escaped line break// is a backslash (`\`) followed by a newline. Both the backslash and the newline are thrown away.
 
@@ -361,8 +409,7 @@ wrapped in a p
 >>
 
 
-
-!! It should not wrap an element in a paragraph and parse the children in inline mode, when there is exactly one newline after the opening tag
+!!! It should not wrap an element in a paragraph and parse the children in inline mode, when there is exactly one newline after the opening tag
 
 <<one-example
 
@@ -377,8 +424,7 @@ wrapped in a p
 >>
 
 
-
-!! It should not wrap an element in a paragraph and parse the children in block mode, when there are two or more newlines after the opening tag
+!!! It should not wrap an element in a paragraph and parse the children in block mode, when there are two or more newlines after the opening tag
 
 <table>
 
@@ -427,7 +473,7 @@ wrapped in a p
 </table>
 
 
-!! It should trim away newlines from the start of pre and code elements, but keep indents and whitespace before and between text
+!!! It should trim away newlines from the start of pre and code elements, but keep indents and whitespace before and between text
 
 So that these preformatted elements do not have empty lines at their start when viewed in the browser.
 
@@ -504,8 +550,7 @@ my code</code></p>"
 </table>
 
 
-
-!! It should not wrap //self-closing// or //void// elements in a paragraph, when they stand alone in a line
+!!! It should not wrap //self-closing// or //void// elements in a paragraph, when they stand alone in a line
 
 <table>
 
@@ -562,8 +607,7 @@ To have paragraph wrapping, add the closing tag ...
 >>
 
 
-
-!! It should handle the end of input as if it was a line break, because editors or users may accidentally add or trim those
+!!! It should handle the end of input as if it was a line break, because editors or users may accidentally add or trim those
 
 <table>
 
@@ -669,8 +713,7 @@ This rule also applies to end of input inside macro definitions.
 It also makes HTML line breaks (//br//'s) behave more intuitive, see below examples.
 
 
-
-!! It should parse HTML line breaks
+!!! It should parse HTML line breaks
 
 These are valid ways to write an HTML line break.
 
@@ -708,9 +751,9 @@ These are not.
 
 <<example
 
-"<br\\>"
+"<br\>"
 
-"<p>&lt;br\\&gt;</p>"
+"<p>&lt;br\&gt;</p>"
 
 >>
 
