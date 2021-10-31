@@ -1,12 +1,12 @@
 Nils' private notes, to be used with Nils' private modified Code Browser instance.
 
 Changes made in the source
-# (GOTO) :Change regex (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=136
+# (GOTO) :Change regex (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=138
 # (GOTO) :Add 2 css rules (base.tid):../TiddlyWiki5/themes/tiddlywiki/vanilla/base.tid?ln=890
-# (GOTO) :Define WikiParser.prototype.skip (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=162
-# (GOTO) :Define WikiParser.prototype.skipNewlines (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=183
+# (GOTO) :Define WikiParser.prototype.skip (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=160
+# (GOTO) :Define WikiParser.prototype.skipNewlines (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=186
 # (GOTO) :Skip newlines at start of <pre>'s and <code>'s (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=61
-# (GOTO) :Define WikiParser.prototype.skipEscapedLinebreak (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=190
+# (GOTO) :Define WikiParser.prototype.skipEscapedLinebreak (wikiparser.js):../TiddlyWiki5/core/modules/parsers/wikiparser/wikiparser.js?ln=193
 # (GOTO) :Skip escaped linebreak (html.js):../TiddlyWiki5/core/modules/parsers/wikiparser/rules/html.js?ln=51
 
 Diffing
