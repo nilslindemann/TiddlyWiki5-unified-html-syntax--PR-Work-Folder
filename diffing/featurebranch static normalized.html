@@ -5741,10 +5741,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[-2000]abs[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -5757,10 +5757,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =-1 =-2 =3 =4 =5 +[abs[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -6116,10 +6116,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]acos[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -6132,10 +6132,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[acos[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -8558,7 +8558,7 @@ ActionSendMessageWidget
 <div>
 <a>
 </a>
-18th May 2015 at 11:09pm
+23rd October 2021 at 6:01pm
 </div>
 </div>
 <div>
@@ -8658,6 +8658,31 @@ $value
 Value for optional parameter whose name is specified in
 <code>
 $name
+</code>
+</td>
+</tr>
+<tr>
+<td>
+$names
+</td>
+<td>
+<span>
+New in: 5.2.1
+</span>
+Optional filter evaluating to a list of additional parameter names
+</td>
+</tr>
+<tr>
+<td>
+$values
+</td>
+<td>
+<span>
+New in: 5.2.1
+</span>
+Optional filter evaluating to a list of parameter values corresponding to the parameters names specified in
+<code>
+$names
 </code>
 </td>
 </tr>
@@ -8980,6 +9005,212 @@ Go to Control Panel "Appearance" tab
 </span>
 <span>
 <h2>
+ActionSetMultipleFieldsWidget
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+23rd October 2021 at 6:01pm
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+ActionWidgets
+</span>
+<span>
+</span>
+</span>
+<span>
+<span>
+Widgets
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<div>
+<h1>
+Introduction
+</h1>
+<p>The
+<strong>
+action-setmultiplefields
+</strong>
+widget is an
+<a>
+action widget
+</a>
+that assigns multiple fields to a tiddler where the names and values of the fields are specified as separate filters.
+<a>
+ActionWidgets
+</a>
+are used within triggering widgets such as the
+<a>
+ButtonWidget
+</a>
+.</p>
+<h1>
+Content and Attributes
+</h1>
+<p>The
+<strong>
+action-setmultiplefields
+</strong>
+widget is invisible. Any content within it is ignored.</p>
+<table>
+<tbody>
+<tr>
+<th>
+Attribute
+</th>
+<th>
+Description
+</th>
+</tr>
+<tr>
+<td>
+$tiddler
+</td>
+<td>
+Optional title of the tiddler to modify (defaults to the current tiddler)
+</td>
+</tr>
+<tr>
+<td>
+$fields
+</td>
+<td>
+Optional filter evaluating to the names of a list of fields to assign. Either
+<code>
+$fields
+</code>
+or
+<code>
+$indexes
+</code>
+must be specified
+</td>
+</tr>
+<tr>
+<td>
+$indexes
+</td>
+<td>
+Optional filter evaluating to the names of a list of indexes to assign. Either
+<code>
+$fields
+</code>
+or
+<code>
+$indexes
+</code>
+must be specified
+</td>
+</tr>
+<tr>
+<td>
+$values
+</td>
+<td>
+Filter evaluating to the values to be assigned to the fields or indexes
+</td>
+</tr>
+<tr>
+<td>
+$timestamp
+</td>
+<td>
+Specifies whether the timestamp(s) of the target tiddler will be updated (
+<strong>
+modified
+</strong>
+and
+<strong>
+modifier
+</strong>
+, plus
+<strong>
+created
+</strong>
+and
+<strong>
+creator
+</strong>
+for newly created tiddlers). Can be "yes" (the default) or "no"
+</td>
+</tr>
+</tbody>
+</table>
+<h1>
+Examples
+</h1>
+<p>Here is an example of button that uses the data in
+<a>
+Days of the Week
+</a>
+to assign fields
+<code>
+day-Monday
+</code>
+,
+<code>
+day-Tuesday
+</code>
+etc. to the tiddler "
+<a>
+HelloThere
+</a>
+":</p>
+<div>
+<div>
+<div>
+<button>
+copy to clipboard
+</button>
+</div>
+</div>
+<pre>
+<code>
+&lt;$button&gt; &lt;$action-setmultiplefields/&gt; Click me! &lt;/$button&gt;
+</code>
+</pre>
+<p>That renders as:</p>
+<p><button>
+Click me!
+</button></p>
+</div>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
 actionTiddler Variable
 </h2>
 </span>
@@ -9100,6 +9331,7 @@ ActionWidget Execution Modes
 <div>
 <a>
 </a>
+26th October 2021 at 11:47am
 </div>
 </div>
 <div>
@@ -9164,7 +9396,7 @@ ActionTestTiddler
 Click me
 </button></p>
 </div>
-<p>The new behaviour avoids these problems by refreshing all widgets before execution, not just action widgets. It is engaged by running the actions in a scopr that includes the variable
+<p>The new behaviour avoids these problems by refreshing all widgets before execution, not just action widgets. It is engaged by running the actions in a scope that includes the variable
 <code>
 tv-action-refresh-policy
 </code>
@@ -9172,8 +9404,16 @@ set to the value
 <code>
 always
 </code>
-.</p>
-<p>This can be done within an action string, or via a local variable declaration containing the widget triggering the action.</p>
+. (The default value for
+<code>
+tv-action-refresh-policy
+</code>
+is
+<code>
+once
+</code>
+).</p>
+<p>The assignment can be done within an action string, or via a local variable declaration containing the widget triggering the action.</p>
 <div>
 <div>
 </div>
@@ -9317,6 +9557,11 @@ action-sendmessage
 action-setfield
 </a>
 </li>
+<li>
+<a>
+action-setmultiplefields
+</a>
+</li>
 </ul>
 <p>There are two ways to use action widgets:</p>
 <ul>
@@ -9413,7 +9658,7 @@ ActionTestTiddler
 Click me
 </button></p>
 </div>
-<p>The new behaviour avoids these problems by refreshing all widgets before execution, not just action widgets. It is engaged by running the actions in a scopr that includes the variable
+<p>The new behaviour avoids these problems by refreshing all widgets before execution, not just action widgets. It is engaged by running the actions in a scope that includes the variable
 <code>
 tv-action-refresh-policy
 </code>
@@ -9421,8 +9666,16 @@ set to the value
 <code>
 always
 </code>
-.</p>
-<p>This can be done within an action string, or via a local variable declaration containing the widget triggering the action.</p>
+. (The default value for
+<code>
+tv-action-refresh-policy
+</code>
+is
+<code>
+once
+</code>
+).</p>
+<p>The assignment can be done within an action string, or via a local variable declaration containing the widget triggering the action.</p>
 <div>
 <div>
 </div>
@@ -9639,10 +9892,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[23]add[19]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -9655,10 +9908,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[add[4]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -10038,10 +10291,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 Cat Garden [[Favourite Armchair]] +[addprefix[My ]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -10217,10 +10470,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[London]addsuffix[ Underground]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -10480,10 +10733,10 @@ Thursday
 </a>
 tiddler shows a further example.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]after[Monday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -10496,10 +10749,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]after[Sunday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11830,10 +12083,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [all[shadows]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11846,10 +12099,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows+tiddlers]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11862,10 +12115,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[tiddlers+shadows]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11878,10 +12131,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[orphans+missing+current]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11894,10 +12147,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11910,10 +12163,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]tag[Operator Examples]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11926,10 +12179,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]tag[Recipes]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -11942,10 +12195,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 Monday Thursday +[all[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -12136,10 +12389,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[allafter[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -12152,10 +12405,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[allafter:include[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -12346,10 +12599,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]allbefore[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -12362,10 +12615,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]allbefore:include[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -12378,10 +12631,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 A B C D E +[allbefore:include[C]count[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -12914,6 +13167,11 @@ ActionSendMessageWidget
 <div>
 <a>
 ActionSetFieldWidget
+</a>
+</div>
+<div>
+<a>
+ActionSetMultipleFieldsWidget
 </a>
 </div>
 <div>
@@ -14703,6 +14961,11 @@ Hidden Setting: Search Minimum Length
 </div>
 <div>
 <a>
+Hidden Setting: Show Edit Preview per Tiddler
+</a>
+</div>
+<div>
+<a>
 Hidden Setting: Sync Polling Interval
 </a>
 </div>
@@ -14854,6 +15117,11 @@ HTML Links in WikiText
 <div>
 <a>
 HyperText Markup Language
+</a>
+</div>
+<div>
+<a>
+Icon Gallery
 </a>
 </div>
 <div>
@@ -15324,6 +15592,11 @@ length Operator
 <div>
 <a>
 length Operator (Examples)
+</a>
+</div>
+<div>
+<a>
+LetWidget
 </a>
 </div>
 <div>
@@ -17129,6 +17402,11 @@ Serving TW5 from Android
 <div>
 <a>
 SetFieldCommand
+</a>
+</div>
+<div>
+<a>
+SetMultipleVariablesWidget
 </a>
 </div>
 <div>
@@ -19396,6 +19674,16 @@ Working with TiddlyWiki
 XLSX Utilities Edition
 </a>
 </div>
+<div>
+<a>
+zth Operator
+</a>
+</div>
+<div>
+<a>
+zth Operator (Examples)
+</a>
+</div>
 </div>
 <div>
 </div>
@@ -20125,7 +20413,7 @@ More examples
 <p>In each case the target code is placed at the destination the reader navigates to, the link code is placed where it will help the reader navigate from.</p>
 <pre>
 <code>
-&lt;h2&gt;My Target Heading&lt;/h2&gt; &lt;a&gt;Link to My Target Heading&lt;/a&gt;
+&lt;h2&gt; My Target Heading&lt;/h2&gt; &lt;a&gt;Link to My Target Heading&lt;/a&gt;
 </code>
 </pre>
 <p>This looks like:</p>
@@ -20369,7 +20657,7 @@ id
 and anchor link to this header has been made as follows:</p>
 <pre>
 <code>
-&lt;a href=&lt;&lt;qualify "##qualify-example"&gt;&gt;&gt;Avoiding duplicate IDs when transcluding&lt;/a&gt; &lt;h2 id=&lt;&lt;qualify "#qualify-example"&gt;&gt;&gt;Avoiding duplicate IDs when transcluding&lt;/h2&gt;
+&lt;a href=&lt;&lt;qualify "##qualify-example"&gt;&gt;&gt;Avoiding duplicate IDs when transcluding&lt;/a&gt; &lt;h2 id=&lt;&lt;qualify "#qualify-example"&gt;&gt;&gt; Avoiding duplicate IDs when transcluding&lt;/h2&gt;
 </code>
 </pre>
 <dl>
@@ -20693,10 +20981,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]append[Tomorrow]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -20709,10 +20997,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]append[Yesterday Today Tomorrow]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -20730,10 +21018,10 @@ Append the first 4 short days of the week to our list
 </dt>
 </dl>
 <div>
+<span>
 <code>
 [list[Days of the Week]append:4{Days of the Week!!short}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -21249,10 +21537,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]asin[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -21265,10 +21553,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[asin[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -21449,10 +21737,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]atan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -21465,10 +21753,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[atan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -21675,10 +21963,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]atan2[5]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -21691,10 +21979,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[atan2[4]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -22207,10 +22495,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =3 =4 =5 +[average[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -22227,10 +22515,10 @@ Try it
 NaN
 </code></p>
 <div>
+<span>
 <code>
 [tag[NotATiddler]get[price]] +[average[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -22405,10 +22693,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[HelloThere]backlinks[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -22421,6 +22709,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[TableOfContents]backlinks[]]
 </code>
@@ -22430,7 +22719,6 @@ Try it
 TableOfContents
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -22443,13 +22731,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]backlinks[]]
 </code>
 <dd>
 → tiddlers that link to this one
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -22778,10 +23066,10 @@ Thursday
 </a>
 tiddler shows a further example.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]before[Saturday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -22794,10 +23082,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]before[Monday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -24468,10 +24756,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]butlast[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -24484,10 +24772,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]butlast[2]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -24500,10 +24788,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 A B C D E F G H I J K L M +[butlast[7]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -25381,10 +25669,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[1.6]ceil[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -25397,10 +25685,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[-1.6]ceil[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -25413,10 +25701,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =-1.2 =-2.4 =3.6 =4.8 =5.1 +[ceil[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -26017,10 +26305,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [charcode[65]match[A]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -28759,10 +29047,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [commands[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -31543,13 +31831,13 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[20200101]compare:date:gt[201912311852]]
 </code>
 <dd>
 → compares two partial dates
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -31562,13 +31850,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[202001011852]compare:integer:gt[20191231]]
 </code>
 <dd>
 → compares the same two strings as integers
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -31581,10 +31869,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]compare:string:gt[M]compare:string:lt[W]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -31597,10 +31885,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[v5.1.23-prerelease]compare:version:gt[v5.1.22]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -31613,10 +31901,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[1]compare:number:gt[2]then[yes]else[no]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -32690,6 +32978,7 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [contains:tags[HelloThere]]
 </code>
@@ -32700,7 +32989,6 @@ HelloThere
 </a>
 ]]
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -32713,6 +33001,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[$:/StoryList]contains[HelloThere]]
 </code>
@@ -32723,7 +33012,6 @@ HelloThere
 </a>
 ' is currently displayed in the story river
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -35048,10 +35336,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]cos[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -35064,10 +35352,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[cos[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -35227,10 +35515,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [tag[HelloThere]count[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -37911,10 +38199,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]first[]] +[cycle{Days of the Week!!list}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -37927,10 +38215,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]first[]] +[cycle{Days of the Week!!list},[2]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -39513,13 +39801,13 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [days[-14]]
 </code>
 <dd>
 → tiddlers modified within the last 14 days
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -39532,13 +39820,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!days:created[-800]]
 </code>
 <dd>
 → tiddlers created more than 800 days ago
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -39901,10 +40189,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with &amp;lt; angle brackets &amp;gt;]] +[decodehtml[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -39917,10 +40205,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Title with an &amp;amp; ampersand]] +[decodehtml[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -40087,10 +40375,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title%20with%20Space]] +[decodeuri[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -40103,10 +40391,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Title%20with%20Space]] [[Another%20title%20with%20Space]] +[decodeuri[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -40273,10 +40561,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title%20with%20Space]] +[decodeuricomponent[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -40289,10 +40577,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Title%20with%20Space]] [[Another%20title%20with%20Space]] +[decodeuricomponent[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -41670,10 +41958,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [deserializers[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -42780,10 +43068,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[355]divide[113]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -42796,10 +43084,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[divide[2]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -46923,10 +47211,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [each[color]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -46939,13 +47227,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [sort[title]each[type]]
 </code>
 <dd>
 → the alphabetically first tiddler of each type
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -46958,13 +47246,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [each:list-item[list]]
 </code>
 <dd>
 → all tiddlers listed anywhere in the core list field
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -46977,6 +47265,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Non existing]] [[GettingStarted]] +[each:value[]]
 </code>
@@ -46987,7 +47276,6 @@ Try it
 </code>
 below
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -47000,6 +47288,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Non existing]] [[GettingStarted]] +[each[]]
 </code>
@@ -47010,7 +47299,6 @@ Try it
 </code>
 above
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -47218,13 +47506,13 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [eachday[created]]
 </code>
 <dd>
 → the first tiddler created on each day
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -48463,7 +48751,20 @@ inputActions
 <span>
 New in: 5.1.23
 </span>
-Optional actions that are triggered every time an input event occurs within the input field or textarea
+Optional actions that are triggered every time an input event occurs within the input field or textarea.
+<br>
+<span>
+New in: 5.2.1
+</span>
+The variable
+<code>
+actionValue
+</code>
+is available to the
+<code>
+inputActions
+</code>
+and contains the value of the input field.
 </td>
 </tr>
 <tr>
@@ -48853,10 +49154,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[HelloThereMissing]is[missing]else[yes]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -48869,10 +49170,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]is[missing]else[yes]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -49325,10 +49626,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with &lt;angle brackets&gt;]] +[encodehtml[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -49341,10 +49642,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Title with an &amp; ampersand]] +[encodehtml[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -49511,10 +49812,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with Space]] +[encodeuri[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -49527,10 +49828,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Title with Space]] [[Another title with Space]] +[encodeuri[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -49697,10 +49998,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with Space]] +[encodeuricomponent[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -49713,10 +50014,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Title with Space]] [[Another title with Space]] +[encodeuricomponent[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50210,10 +50511,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [enlist[one two three]addsuffix[!]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50226,10 +50527,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [enlist[one one one]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50242,10 +50543,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [enlist:raw[one one one]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50258,10 +50559,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [enlist{$:/StoryList!!list}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50478,10 +50779,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Days of the Week]get[list]enlist-input[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50495,10 +50796,10 @@ Try it
 </div>
 <p>Contrast with:</p>
 <div>
+<span>
 <code>
 [[Days of the Week]get[list]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50511,10 +50812,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 'HelloThere GettingStarted [[Customise TiddlyWiki]]' +[enlist-input[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50528,10 +50829,10 @@ Try it
 </div>
 <p>Contrast with:</p>
 <div>
+<span>
 <code>
 'HelloThere GettingStarted [[Customise TiddlyWiki]]'
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50544,10 +50845,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 'HelloThere HelloThere GettingStarted [[Customise TiddlyWiki]]' +[enlist-input:raw[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50561,10 +50862,10 @@ Try it
 </div>
 <p>Contrast with:</p>
 <div>
+<span>
 <code>
 'HelloThere HelloThere GettingStarted [[Customise TiddlyWiki]]' +[enlist-input[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -50932,10 +51233,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [all[tiddlers]tag[Resources]escapecss[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -51102,10 +51403,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with dots . and dollars $]] +[escaperegexp[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -53233,10 +53534,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 123456789 +[exponential[4]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -53249,10 +53550,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 123456789 +[exponential[13]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -53265,10 +53566,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 1.23E23 +[exponential[90]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -54255,6 +54556,7 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [field:author[JeremyRuston]]
 </code>
@@ -54264,7 +54566,6 @@ Operator Examples
 JeremyRuston
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54277,6 +54578,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [plugin-type[theme]author[JeremyRuston]]
 </code>
@@ -54286,7 +54588,6 @@ Try it
 JeremyRuston
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54769,6 +55070,7 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[HelloThere]fields[]]
 </code>
@@ -54778,7 +55080,6 @@ Operator Examples
 HelloThere
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54791,6 +55092,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]fields:include[list title text non-existing]]
 </code>
@@ -54801,7 +55103,6 @@ HelloThere
 </a>
 using a "short list" of fields. Fields are only shown, if they exist
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54814,6 +55115,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]fields:include[list title text]sortby[title list text]]
 </code>
@@ -54824,7 +55126,6 @@ HelloThere
 </a>
 special sorting
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54837,6 +55138,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]fields:exclude[list title text]]
 </code>
@@ -54847,7 +55149,6 @@ HelloThere
 </a>
 using the exclude suffix
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54860,6 +55161,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]fields[]] -list -title -text
 </code>
@@ -54870,7 +55172,6 @@ HelloThere
 </a>
 , using several filter runs instead of exclude suffix
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -54883,6 +55184,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Common Operators]fields[]]
 </code>
@@ -54892,7 +55194,6 @@ Try it
 Common Operators
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -55925,10 +56226,10 @@ contains-missing-links
 </li>
 </ul>
 <div>
+<span>
 <code>
 [tag[HelloThere]filter&lt;larger-than-1k&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -55941,10 +56242,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]filter&lt;smaller-than-2k&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -55957,10 +56258,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]filter&lt;larger-than-1k&gt;filter&lt;smaller-than-2k&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -55973,10 +56274,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Features]filter&lt;contains-missing-links&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -57116,6 +57417,24 @@ sort the input by the result of evaluating a subfilter for each item
 <code>
 !
 </code>
+</td>
+</tr>
+<tr>
+<td>
+<a>
+zth
+</a>
+</td>
+<td>
+select the
+<code>
+Z
+</code>
+th input title
+</td>
+<td>
+</td>
+<td>
 </td>
 </tr>
 <tr>
@@ -58943,10 +59262,10 @@ compare Operator
 </a>
 tiddlers and their respective tags.</p>
 <div>
+<span>
 <code>
 [[field Operator]tags[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -58959,10 +59278,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[compare Operator]tags[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -58975,13 +59294,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[field Operator]tags[]] +[[compare Operator]tags[]]
 </code>
 <dd>
 → The "field Operator" tiddler's tags are lost, so only the "compare Operator" tiddler's tags are returned
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -58994,13 +59313,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[field Operator]tags[]] :intersection[[compare Operator]tags[]]
 </code>
 <dd>
 → Returns the tags that both tiddlers have in common
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -59753,10 +60072,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]first[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -59769,10 +60088,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]first[5]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -59785,10 +60104,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Filter Operators]!sort[title]first[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60153,10 +60472,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 10.123456789 +[fixed[5]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60169,10 +60488,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[355]divide[113]fixed[7]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60185,10 +60504,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[1]divide[2]fixed[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60362,10 +60681,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[1.6]floor[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60378,10 +60697,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[-1.6]floor[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60394,10 +60713,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =-1.2 =-2.4 =3.6 =4.8 =5.1 +[floor[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60652,10 +60971,10 @@ HelloThere
 .</p>
 <p>Created date with no format string specified:</p>
 <div>
+<span>
 <code>
 [[HelloThere]get[created]format:date[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60669,10 +60988,10 @@ Try it
 </div>
 <p>Created date with a format string supplied as operator parameter:</p>
 <div>
+<span>
 <code>
 [[HelloThere]get[created]format:date[DDth MMM YYYY]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60686,10 +61005,10 @@ Try it
 </div>
 <p>Modified date shown as a relative date:</p>
 <div>
+<span>
 <code>
 [[HelloThere]get[modified]format:relativedate[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60703,10 +61022,10 @@ Try it
 </div>
 <p>A tiddler title with spaces formatted as a title list:</p>
 <div>
+<span>
 <code>
 [[Hello There]format:titlelist[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60728,10 +61047,10 @@ TableOfContents
 </span>
 formatted as a title list :</p>
 <div>
+<span>
 <code>
 [tag[TableOfContents]format:titlelist[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60760,10 +61079,10 @@ join operator
 </a>
 </div>
 <div>
+<span>
 <code>
 [tag[TableOfContents]format:titlelist[]join[ ]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -60794,7 +61113,7 @@ copy to clipboard
 </div>
 <pre>
 <code>
-&lt;$button&gt;test &lt;$action-setfield titles={{{ [tag[TableOfContents]format:titlelist[]join[ ]] }}}/&gt; &lt;/$button&gt;
+&lt;$button&gt; test &lt;$action-setfield titles={{{ [tag[TableOfContents]format:titlelist[]join[ ]] }}}/&gt; &lt;/$button&gt;
 </code>
 </pre>
 <p>That renders as:</p>
@@ -62974,13 +63293,13 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [all[current]get[draft.of]]
 </code>
 <dd>
 → the title of the tiddler of which the current tiddler is a draft
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -62993,10 +63312,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [get[tags]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -63009,10 +63328,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [each[tags]get[tags]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -63218,6 +63537,7 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[$:/palettes/Vanilla]getindex[background]]
 </code>
@@ -63234,7 +63554,6 @@ DataTiddler
 $:/palettes/Vanilla
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -63247,6 +63566,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows+tiddlers]tag[$:/tags/Palette]getindex[background]]
 </code>
@@ -63256,7 +63576,6 @@ Try it
 ColourPalettes
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -63405,7 +63724,6 @@ Save
 </strong>
 menu option to save changes (it doesn't work)
 </div>
-<br>
 <br>
 <p>Available methods for saving changes with
 <a>
@@ -65088,6 +65406,7 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[currentTiddler]getvariable[]]
 </code>
@@ -65097,7 +65416,6 @@ Operator Examples
 currentTiddler
 </strong>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -66225,10 +66543,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [has[color]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -66241,10 +66559,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Concepts]!has[modified]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -66257,10 +66575,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [has:field[emptyfield]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -66273,10 +66591,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]!has:field[doesntexist]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -66289,10 +66607,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[tiddlers+shadows]has:index[foreground]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -66305,10 +66623,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]!has:index[doesntexist]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -68414,6 +68732,68 @@ $:/config/Search/MinLength
 </span>
 <span>
 <h2>
+Hidden Setting: Show Edit Preview per Tiddler
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+29th October 2021 at 11:03am
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+Hidden Settings
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<div>
+<p>Controls whether the
+<a>
+tiddler editing preview
+</a>
+is controlled globally (the default) or on a per-tiddler basis.</p>
+<p>Set it to
+<strong>
+yes
+</strong>
+to enable per-tiddler mode.</p>
+<p><a>
+$:/config/ShowEditPreview/PerTiddler
+</a></p>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
 Hidden Setting: Sync Polling Interval
 </h2>
 </span>
@@ -68864,6 +69244,11 @@ Hidden Setting: Navigate on Enter
 <li>
 <a>
 Hidden Setting: Search Minimum Length
+</a>
+</li>
+<li>
+<a>
+Hidden Setting: Show Edit Preview per Tiddler
 </a>
 </li>
 <li>
@@ -70300,7 +70685,7 @@ How to create dynamic editor toolbar buttons
 <div>
 <a>
 </a>
-17th December 2020 at 8:33pm
+18th October 2021 at 12:23pm
 </div>
 </div>
 <div>
@@ -70385,7 +70770,10 @@ Assigns the button icon. We use
 <code>
 $:/core/images/spiral
 </code>
-here.
+here. More button icons can be found in the
+<a>
+Icon Gallery
+</a>
 </dd>
 <dt>
 shortcuts
@@ -70730,6 +71118,7 @@ ShortcutInfo
 </strong>
 tiddler as mentioned above is created first and the shortcut is configured in the ControlPanel
 </div>
+<br>
 <h2>
 At this point the shortcut is defined and its
 <strong>
@@ -70821,6 +71210,7 @@ textarea
 field within its scope
 </div>
 </blockquote>
+<br>
 <h2>
 Using global Keyboard Shortcuts
 </h2>
@@ -70897,6 +71287,7 @@ Keyboard Shortcut Descriptor
 as its value and some actions in its text field, the actions will be triggered when the mechanism detects the configured key-combination
 </div>
 </blockquote>
+<br>
 <div>
 <div>
 </div>
@@ -70942,6 +71333,7 @@ my-macro-tiddler
 my-macro-tiddler
 </span>
 </pre>
+<br>
 <div>
 <div>
 </div>
@@ -71677,10 +72069,10 @@ sortsub Operator
 </a>
 to ignore stop words like "A" and "The" at the beginning of titles when sorting. (Note for example that "A Tale of Two Cities" sorts under "T" rather than "A")</p>
 <div>
+<span>
 <code>
 [enlist&lt;book-list&gt;sortsub&lt;compare-without-stopwords&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -72388,6 +72780,274 @@ of a tiddler.</p>
 </span>
 <span>
 <h2>
+Icon Gallery
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+18th October 2021 at 12:23pm
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+Learning
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<div>
+<div>
+<div>
+</div>
+Click an icon to copy the title to the clipboard
+</div>
+<div>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+</div>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
 image-picker Macro
 </h2>
 </span>
@@ -72931,7 +73591,7 @@ ImageGallery Example
 <div>
 <a>
 </a>
-20th May 2015 at 6:14pm
+22nd October 2021 at 9:52pm
 </div>
 </div>
 <div>
@@ -72946,235 +73606,238 @@ Learning
 </div>
 </div>
 <div>
-<p>Here is an example of using the
-<a>
-ListWidget
-</a>
-and the
-<a>
-TranscludeWidget
-</a>
-to show a grid of all system images (ie, tiddlers tagged
-<a>
-$:/tags/Image
-</a>
-).</p>
-<style>
-.my-gallery svg { width: 6em; height: 6em; margin: 1em; }
-</style>
 <div>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
-<span>
-</span>
+<div>
+</div>
+The
+<a>
+ImageGallery Example
+</a>
+has been replaced with the new
+<a>
+Icon Gallery
+</a>
+which is transcluded below
+</div>
+<hr>
+<div>
+<div>
+</div>
+Click an icon to copy the title to the clipboard
+</div>
+<div>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
+<a>
+</a>
 </div>
 </div>
 <div>
@@ -74253,6 +74916,7 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [{$:/palette}indexes[]sort[title]]
 </code>
@@ -74262,7 +74926,6 @@ Operator Examples
 colour palette
 </a>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -74275,6 +74938,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[$:/HistoryList]indexes[]]
 </code>
@@ -74285,7 +74949,6 @@ history list
 </a>
 is an array
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -77807,10 +78470,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [is[tag]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -77823,10 +78486,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!is[tag]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -77839,6 +78502,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows]!is[system]]
 </code>
@@ -77848,7 +78512,6 @@ Try it
 $:/
 </code>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -77861,13 +78524,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [is[system]tag[$:/tags/Stylesheet]]
 </code>
 <dd>
 → system stylesheets
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -77880,13 +78543,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows]is[system]tag[$:/tags/Stylesheet]]
 </code>
 <dd>
 → shadow system stylesheets
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -77899,13 +78562,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [is[shadow]]
 </code>
 <dd>
 → overridden shadow tiddlers
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -77918,13 +78581,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [is[missing]]
 </code>
 <dd>
 → empty because its input contains only tiddlers that exist
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -78451,10 +79114,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 a b c d e +[join[,]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -78885,10 +79548,10 @@ stringify Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with "double quotes" and single ' and \backslash]] +[jsonstringify[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -78901,10 +79564,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Accents and emojis -&gt; äñøßπ ⌛🎄🍪🍓 without suffix]] +[jsonstringify[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -78917,10 +79580,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Accents and emojis -&gt; äñøßπ ⌛🎄🍪🍓 with rawunicode suffix]] +[jsonstringify:rawunicode[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -83101,10 +83764,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]last[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -83117,10 +83780,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]last[5]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -83133,10 +83796,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Concepts]!sort[title]last[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -83497,7 +84160,7 @@ LazyLoading
 <div>
 <a>
 </a>
-1st July 2018 at 8:54pm
+9th October 2021 at 4:54pm
 </div>
 </div>
 <div>
@@ -83540,7 +84203,7 @@ TiddlyWiki in the Sky for TiddlyWeb
 </ul>
 <p>See the
 <a>
-LazyLoadingMechanism
+Lazy Loading Mechanism
 </a>
 for details of how lazy loading is implemented.</p>
 <h1>
@@ -83876,6 +84539,11 @@ Simple ways to write protect tiddlers
 </li>
 <li>
 <a>
+Icon Gallery
+</a>
+</li>
+<li>
+<a>
 Introduction to Lists
 </a>
 </li>
@@ -84032,10 +84700,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[abc]length[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -84048,10 +84716,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]length[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -84063,6 +84731,165 @@ Try it
 <span>
 </span>
 </div>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
+LetWidget
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+Widgets
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<div>
+<h1>
+Introduction
+</h1>
+<p><span>
+New in: 5.2.1
+</span>
+The
+<code>
+$let
+</code>
+widget allows multiple variables to be set in one operation. In some situations it can result in simpler code than using the more flexible
+<a>
+<code>
+$set
+</code>
+</a>
+widget. It differs from the
+<a>
+<code>
+$vars
+</code>
+</a>
+widget in that variables you're defining may depend on earlier variables defined within the same
+<code>
+$let
+</code>
+.</p>
+<h1>
+Content and Attributes
+</h1>
+<p>The content of the
+<code>
+$let
+</code>
+widget is the scope for the value assigned to the variable.</p>
+<table>
+<tbody>
+<tr>
+<th>
+Attribute
+</th>
+<th>
+Description
+</th>
+</tr>
+<tr>
+<td>
+<em>
+{attributes not starting with $}
+</em>
+</td>
+<td>
+Each attribute name specifies a variable name. The attribute value is assigned to the variable
+</td>
+</tr>
+</tbody>
+</table>
+<p>Attributes are evaluated in the order they are written. Attributes with the same name are allowed. Each time a duplicate attribute is encountered, it will replace the existing value set by the earlier duplicate.</p>
+<h1>
+Examples
+</h1>
+<p>Consider a case where you need to set multiple variables, where some depend on the evaluation of others.</p>
+<p>Using the
+<code>
+$let
+</code>
+widget, this situation may be handled in the following way:</p>
+<pre>
+<code>
+\define helloworld() Hello world! &lt;$let currentTiddler={{{ [&lt;target&gt;prefix[$:/settings/for/]] }}} settings={{!!text}} currentTiddler=&lt;&lt;target&gt;&gt; &gt; The settings for &lt;&lt;currentTiddler&gt;&gt; are: &lt;&lt;settings&gt;&gt; &lt;/$let&gt;
+</code>
+</pre>
+<p>In contrast, here is the same example using the
+<code>
+$set
+</code>
+widget:</p>
+<pre>
+<code>
+&lt;$set &gt; &lt;$set value={{{ [&lt;target&gt;prefix[$:/settings/for/]] }}} &gt; &lt;$set value={{!!text}} &gt; &lt;$set value=&lt;&lt;target&gt;&gt; &gt; The settings for &lt;&lt;currentTiddler&gt;&gt; are: &lt;&lt;settings&gt;&gt; &lt;/$set&gt; &lt;/$set&gt; &lt;/$set&gt; &lt;/$set&gt;
+</code>
+</pre>
+<h1>
+Remarks
+</h1>
+<p>This widget differs from
+<code>
+$vars
+</code>
+in the following way:</p>
+<ul>
+<li>
+Each variable's definition will be immediately available to all proceeding variables in the same let widget. This differs from vars, in which definitions which depend on some variable will always look to the widget's outer scope for a value.
+</li>
+</ul>
+<p>This widget differs from
+<code>
+$set
+</code>
+in the following ways:</p>
+<ul>
+<li>
+A fallback (also known as "emptyValue") cannot be specified
+</li>
+<li>
+Filters cannot be used to produce a conditional variable assignment
+</li>
+<li>
+Variable names must be literal strings
+</li>
+</ul>
 </div>
 <div>
 </div>
@@ -84354,13 +85181,13 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [sort[modified]!limit[20]]
 </code>
 <dd>
 → the 20 most recently modified tiddlers
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -84373,13 +85200,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [has[created]sort[created]limit[10]]
 </code>
 <dd>
 → the oldest 10 tiddlers in the wiki
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -85119,10 +85946,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[HelloThere]links[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -85135,6 +85962,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]links[]]
 </code>
@@ -85145,7 +85973,6 @@ hard-linked
 </a>
 from the current one
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -85882,10 +86709,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[HelloThere]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -85898,10 +86725,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week!!short]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -86985,10 +87812,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[HelloThere]listed[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -87001,10 +87828,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]listed[my-special-list]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -88530,10 +89357,10 @@ with base
 </code>
 :</p>
 <div>
+<span>
 <code>
 [[8]log[2]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -88555,10 +89382,10 @@ with base
 </code>
 :</p>
 <div>
+<span>
 <code>
 [[100]log[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -88580,10 +89407,10 @@ ln(10)
 </code>
 in mathematics:</p>
 <div>
+<span>
 <code>
 [[10]log[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -88929,13 +89756,13 @@ lookup Operator (Examples)
 </div>
 <div>
 <div>
+<span>
 <code>
 [all[shadows+tiddlers]tag[$:/tags/PageControls]lookup[$:/config/PageControlButtons/Visibility/]]
 </code>
 <dd>
 → Retrieve the visibility status of each page control button
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -88948,13 +89775,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows+tiddlers]tag[$:/tags/PageControls]lookup:show[$:/config/PageControlButtons/Visibility/]]
 </code>
 <dd>
 → Retrieve the visibility status of each page control button, this time with a default value
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -89118,10 +89945,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Abc]lowercase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -89134,10 +89961,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]lowercase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -91315,7 +92142,7 @@ Map Filter Run Prefix
 <div>
 <a>
 </a>
-18th June 2021 at 3:47pm
+29th October 2021 at 4:55am
 </div>
 </div>
 <div>
@@ -91384,6 +92211,55 @@ replaces each input title with its caption field, unless the field does not exis
 :map[{!!price}multiply{!!cost}]
 </code>
 to be used for computation. The value of currentTiddler outside the run is available in the variable "..currentTiddler".</p>
+<p>The following variables are available within the filter run:</p>
+<ul>
+<li>
+<strong>
+currentTiddler
+</strong>
+- the input title
+</li>
+<li>
+<strong>
+..currentTiddler
+</strong>
+- the value of the variable
+<code>
+currentTiddler
+</code>
+outside the filter run.
+</li>
+<li>
+<strong>
+index
+</strong>
+-
+<span>
+New in: 5.2.1
+</span>
+the numeric index of the current list item (with zero being the first item in the list).
+</li>
+<li>
+<strong>
+revIndex
+</strong>
+-
+<span>
+New in: 5.2.1
+</span>
+the reverse numeric index of the current list item (with zero being the last item in the list).
+</li>
+<li>
+<strong>
+length
+</strong>
+-
+<span>
+New in: 5.2.1
+</span>
+the total length of the input list.
+</li>
+</ul>
 <p>Filter runs used with the
 <code>
 :map
@@ -91438,7 +92314,7 @@ Map Filter Run Prefix (Examples)
 <div>
 <a>
 </a>
-18th June 2021 at 4:09pm
+29th October 2021 at 10:25am
 </div>
 </div>
 <div>
@@ -91469,10 +92345,10 @@ Map Filter Run Prefix
 <div>
 <p>Replace the input titles with the caption field if it exists, otherwise preserve the input title:</p>
 <div>
+<span>
 <code>
 [tag[Widgets]] :map[get[caption]else{!!title}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -91507,10 +92383,27 @@ operator
 </div>
 <p>For each title in a shopping list, calculate the total cost of purchasing each item:</p>
 <div>
+<span>
 <code>
 [tag[shopping]] :map[get[quantity]else[0]multiply{!!price}]
 </code>
+<dl>
+<dd>
+<button>
+Try it
+</button>
+</dd>
+</dl>
+</span>
 <span>
+</span>
+</div>
+<p>For each title in a shopping list, prefix it with its position in the list:</p>
+<div>
+<span>
+<code>
+[tag[shopping]] :map[&lt;currentTiddler&gt;addprefix[-]addprefix&lt;index&gt;]
+</code>
 <dl>
 <dd>
 <button>
@@ -91800,10 +92693,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 a b c +[match[b]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -91816,10 +92709,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [match[HelloThere]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -92091,7 +92984,7 @@ evaluates to
 </code>
 evaluates to
 <code>
-8077
+8064
 </code>
 </li>
 </ul>
@@ -92118,7 +93011,7 @@ HelloThere
 <span>
 </span>
 </span>
-: 1346.167
+: 1344.000
 </div>
 <ul>
 <li>
@@ -92735,10 +93628,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[23]max[32]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -92751,10 +93644,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[max[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -92941,10 +93834,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 =5 +[maxall[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -92957,10 +93850,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]get[text]length[]maxall[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -93248,10 +94141,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =3 =4 =5 +[median[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -93268,10 +94161,10 @@ Try it
 NaN
 </code></p>
 <div>
+<span>
 <code>
 [title[NotATiddler]get[price]] +[median[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -94193,10 +95086,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[23]min[32]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -94209,10 +95102,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[min[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -94399,10 +95292,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 =5 +[minall[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -94415,10 +95308,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]get[text]length[]minall[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -94588,10 +95481,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]minlength[7]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -94604,10 +95497,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]minlength[1]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -95190,10 +96083,10 @@ $:/core/modules/macros/qualify.js
 </code>
 :</p>
 <div>
+<span>
 <code>
 [[$:/core/modules/macros/qualify.js]moduleproperty[name]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -95207,10 +96100,10 @@ Try it
 </div>
 <p>For all macro modules retrieve their name module properties:</p>
 <div>
+<span>
 <code>
 [[macro]modules[]moduleproperty[name]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -95481,10 +96374,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[filteroperator]modules[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -95506,10 +96399,10 @@ version
 </code>
 :</p>
 <div>
+<span>
 <code>
 [[macro]modules[name],[version]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -95979,10 +96872,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [moduletypes[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -96471,10 +97364,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[move[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -96487,10 +97380,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[move:-2[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -96685,10 +97578,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[23]multiply[19]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -96701,10 +97594,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[multiply[4]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -97965,10 +98858,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 [[-2000]negate[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -97981,10 +98874,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 =5 +[negate[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -98289,10 +99182,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [[Monday]next[Days of the Week]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -98305,10 +99198,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Sunday]next[Days of the Week]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -98321,10 +99214,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 Tuesday Wednesday Thursday +[next[Days of the Week]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -99286,10 +100179,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 10 010 1000 100 +[nsort[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -99302,10 +100195,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 10 010 ALPHA beta alpha 1000 100 +[nsort[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -99520,10 +100413,10 @@ Operator Examples
 </div>
 <div>
 <div>
+<span>
 <code>
 10 010 1000 100 +[nsortcs[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -99536,10 +100429,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 10 010 ALPHA beta alpha 1000 100 +[nsortcs[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -99585,7 +100478,7 @@ nth Operator
 <div>
 <a>
 </a>
-3rd February 2015 at 8:20pm
+29th October 2021 at 4:37am
 </div>
 </div>
 <div>
@@ -99673,6 +100566,17 @@ first
 </code>
 </a>
 operator.</p>
+<div>
+<div>
+</div>
+See
+<a>
+<code>
+zth
+</code>
+</a>
+for an equivalent operator with a 0 based parameter
+</div>
 <p><a>
 Examples
 </a></p>
@@ -99738,10 +100642,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]nth[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -99754,10 +100658,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]nth[5]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -102249,10 +103153,10 @@ pad Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]pad[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -102265,10 +103169,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[2]pad[3],[a]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -102281,10 +103185,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[12]pad[9],[abc]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -102297,10 +103201,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[12]pad:suffix[9],[abc]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -105300,10 +106204,10 @@ plugintiddlers Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[$:/core]plugintiddlers[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -105572,10 +106476,10 @@ power Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[3]power[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -105588,10 +106492,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 9 +[power[2]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -105914,10 +106818,10 @@ precision Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 123456789 +[precision[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -105930,10 +106834,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 123456789 +[precision[13]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -105946,10 +106850,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 1.23E23 +[precision[90]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106154,10 +107058,10 @@ prefix Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [tag[task]!prefix[Go]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106170,10 +107074,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [prefix[$:/languages/]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106186,6 +107090,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [prefix[$:/]]
 </code>
@@ -106195,7 +107100,6 @@ Try it
 [is[system]]
 </code>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -106398,10 +107302,10 @@ Days of the Week
 tiddler.</p>
 <p>The operator may be used to prepend a number of items to the list.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]prepend[Yesterday Today Tomorrow]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106415,10 +107319,10 @@ Try it
 </div>
 <p>The operand may list only items without spaces – to include items with spaces, use a reference to an array e.g. prepend the last three short days of the week to the list</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]!prepend:3{Days of the Week!!short}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106695,10 +107599,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [[Wednesday]previous[Days of the Week]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106711,10 +107615,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Monday]previous[Days of the Week]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106727,10 +107631,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 Tuesday Wednesday Thursday +[previous[Days of the Week]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106953,10 +107857,10 @@ product Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 =5 +[product[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -106969,10 +107873,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]get[text]length[]product[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107297,10 +108201,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putafter[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107313,10 +108217,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putafter:2[Tuesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107329,10 +108233,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] [[Yesterday]] [[Today]] [[Tomorrow]] +[putafter:3[Tuesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107529,10 +108433,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putbefore[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107545,10 +108449,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putbefore:2[Tuesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107561,10 +108465,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] [[Yesterday]] [[Today]] [[Tomorrow]] +[putbefore:3[Tuesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107752,10 +108656,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putfirst[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107768,10 +108672,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putfirst:2[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107784,10 +108688,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] [[Yesterday]] [[Today]] [[Tomorrow]] +[putfirst:-2[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107975,10 +108879,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putlast[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -107991,10 +108895,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[putlast:2[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -108007,10 +108911,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 one two three [list[Days of the Week]] +[putlast:-3[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -111627,10 +112531,10 @@ quantity: 4, price: 2.66
 </li>
 </ul>
 <div>
+<span>
 <code>
 [tag[shopping]reduce&lt;num-items&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -111643,10 +112547,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[shopping]reduce&lt;add-price&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -111659,6 +112563,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[shopping]reduce&lt;join-with-commas&gt;]
 </code>
@@ -111669,7 +112574,6 @@ Try it
 </code>
 to act differently on the first item than the rest
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -111682,13 +112586,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[non-existent]reduce&lt;add-price&gt;]
 </code>
 <dd>
 → Empty input produces empty output
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -111701,6 +112605,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[non-existent]reduce&lt;add-price&gt;else[0]]
 </code>
@@ -111711,7 +112616,6 @@ else
 </code>
 to ensure output if input was empty
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -111724,13 +112628,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 +[reduce&lt;multiply-input&gt;]
 </code>
 <dd>
 → Empty initial value is treated as 0 by mathematical operators
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -111743,13 +112647,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 +[reduce&lt;multiply-input&gt;,[1]]
 </code>
 <dd>
 → Setting initial value is sometimes necessary for correct results
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -112636,6 +113540,7 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [!is[system]regexp[Wiki]]
 </code>
@@ -112646,7 +113551,6 @@ Wiki
 </code>
 in their title
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -112659,6 +113563,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!is[system]regexp[(?i)Wiki]]
 </code>
@@ -112669,7 +113574,6 @@ Wiki
 </code>
 in their title, ignoring case
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -112682,13 +113586,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!is[system]regexp[Wiki(?i)]]
 </code>
 <dd>
 → same again
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -112701,6 +113605,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [regexp[(?i)\.jpe?g$]]
 </code>
@@ -112715,7 +113620,6 @@ or
 </code>
 , ignoring case
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -112728,13 +113632,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [regexp:created[^201408]]
 </code>
 <dd>
 → tiddlers created in August 2014
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -135120,10 +136024,10 @@ remainder Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[23]remainder[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -135136,10 +136040,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[remainder[2]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -135341,10 +136245,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[remove[Tuesday Wednesday Thursday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -135357,10 +136261,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[remove:3[Monday Wednesday Friday Saturday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -135373,10 +136277,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[!remove:2{Days of the Week!!list}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -135566,10 +136470,10 @@ removeprefix Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[My Cat]] [[Your Garden]] [[My Favourite Armchair]] +[removeprefix[My ]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -135759,10 +136663,10 @@ removesuffix Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 SIMPLEX Googolplex Complex +[removesuffix[plex]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -136332,10 +137236,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] Last +[replace[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -136348,10 +137252,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] Last +[replace:2[Tuesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -136364,10 +137268,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]] [[Yesterday]] [[Today]] [[Tomorrow]] +[replace:3[Tuesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -137063,10 +137967,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]rest[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -137079,10 +137983,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]rest[3]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -137095,10 +137999,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 Z Y X W V U T S R Q P O +[rest[5]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -137898,10 +138802,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]reverse[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -138187,10 +139091,10 @@ round Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[1.6]round[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -138203,10 +139107,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[-1.6]round[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -138219,10 +139123,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =-1.2 =-2.4 =3.6 =4.8 =5.1 +[round[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -138559,13 +139463,13 @@ sameday Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [sameday[20140410]]
 </code>
 <dd>
 → tiddlers modified on 10 April 2014
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -138578,13 +139482,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [sameday:created[20140410]]
 </code>
 <dd>
 → tiddlers created on 10 April 2014
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -145009,16 +145913,7 @@ $:/core/ui/MoreSideBar/Types
 <a>
 $:/core/ui/SideBar/Recent
 </a></p>
-<p>ImageGallery Example:
-<a>
-$:/tags/Image
-</a>
-<a>
-ListWidget
-</a>
-<a>
-TranscludeWidget
-</a></p>
+<p>ImageGallery Example:</p>
 <p>Demonstration: keyboard-driven-input Macro:
 <a>
 $:/core/macros/keyboard-driven-input
@@ -145248,9 +146143,6 @@ Drag and Drop
 How to export tiddlers
 </a></p>
 <p>LazyLoading:
-<a>
-LazyLoadingMechanism
-</a>
 <a>
 TiddlyWiki
 </a>
@@ -145662,6 +146554,7 @@ Filter Expression
 <p>uppercase Operator (Examples):</p>
 <p>variables Operator (Examples):</p>
 <p>variance Operator (Examples):</p>
+<p>zth Operator (Examples):</p>
 <p>exponential Operator:
 <a>
 Mathematics Operators
@@ -146250,6 +147143,7 @@ dumpvariables Macro
 <a>
 Mathematics Operators
 </a></p>
+<p>zth Operator:</p>
 <p>GettingStarted - Android:
 <a>
 AndTidWiki
@@ -146354,7 +147248,7 @@ TiddlyWiki
 <p>HelloThumbnail:</p>
 <p>Some of the things you can do with TiddlyWiki:
 <a>
-ImageGallery Example
+Icon Gallery
 </a>
 <a>
 Motovun Jack.jpg
@@ -146435,6 +147329,13 @@ $:/config/Search/NavigateOnEnter/enable
 <p>Hidden Setting: Search Minimum Length:
 <a>
 $:/config/Search/MinLength
+</a></p>
+<p>Hidden Setting: Show Edit Preview per Tiddler:
+<a>
+$:/config/ShowEditPreview/PerTiddler
+</a>
+<a>
+Text preview
 </a></p>
 <p>Hidden Setting: Sync Polling Interval:
 <a>
@@ -146766,6 +147667,9 @@ $:/config/shortcuts/temp-bold
 </a>
 <a>
 $:/ControlPanel
+</a>
+<a>
+Icon Gallery
 </a>
 <a>
 Keyboard Shortcut Descriptor
@@ -147123,6 +148027,7 @@ TiddlyWikiFolders
 <a>
 TiddlyWiki
 </a></p>
+<p>Icon Gallery:</p>
 <p>Blurry Lawn.jpg:</p>
 <p>Dev Thumbnail.jpg:</p>
 <p>Language Icon: ca-ES:</p>
@@ -151775,6 +152680,9 @@ SystemTags
 </a></p>
 <p>SystemTag: $:/tags/Image:
 <a>
+Icon Gallery
+</a>
+<a>
 SystemTags
 </a></p>
 <p>SystemTag: $:/tags/ImportPreview:
@@ -152788,6 +153696,19 @@ DataTiddlers
 <a>
 HelloThere
 </a></p>
+<p>ActionSetMultipleFieldsWidget:
+<a>
+ActionWidgets
+</a>
+<a>
+ButtonWidget
+</a>
+<a>
+Days of the Week
+</a>
+<a>
+HelloThere
+</a></p>
 <p>ActionWidget Execution Modes:
 <a>
 ActionTestTiddler
@@ -153031,6 +153952,7 @@ Messages
 <a>
 modifier Variable
 </a></p>
+<p>LetWidget:</p>
 <p>LinkCatcherWidget:
 <a>
 ActionWidgets
@@ -153195,6 +154117,13 @@ ListWidget
 <a>
 TableOfContents
 </a></p>
+<p>SetMultipleVariablesWidget:
+<a>
+HelloThere
+</a>
+<a>
+Variables
+</a></p>
 <p>SetVariableWidget:
 <a>
 SetWidget
@@ -153249,10 +154178,7 @@ TiddlyWiki
 <a>
 TranscludeWidget
 </a></p>
-<p>VarsWidget:
-<a>
-SetWidget
-</a></p>
+<p>VarsWidget:</p>
 <p>ViewWidget:
 <a>
 $:/DefaultTiddlers
@@ -154109,13 +155035,13 @@ search Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [!is[system]search[table]]
 </code>
 <dd>
 → non-system tiddlers containing the word "table"
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154128,13 +155054,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows]search[table]]
 </code>
 <dd>
 → shadow tiddlers containing the word "table"
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154147,6 +155073,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [search:caption[arch]]
 </code>
@@ -154161,7 +155088,6 @@ caption
 </code>
 field
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154174,6 +155100,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [search:*[arch]]
 </code>
@@ -154184,7 +155111,6 @@ arch
 </code>
 in any field
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154197,6 +155123,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [search:-title,caption[arch]]
 </code>
@@ -154214,7 +155141,6 @@ and
 caption
 </code>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154227,13 +155153,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!is[system]search[the first]]
 </code>
 <dd>
 → non-system tiddlers containing a case-insensitive match for both the "the" and "first"
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154246,13 +155172,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!is[system]search::literal[the first]]
 </code>
 <dd>
 → non-system tiddlers containing a case-insensitive match for the literal phrase "the first"
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154265,13 +155191,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!is[system]search::literal,casesensitive[The first]]
 </code>
 <dd>
 → non-system tiddlers containing a case-sensitive match for the literal phrase "The first"
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154284,6 +155210,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [search:caption,description:casesensitive,words[arch]]
 </code>
@@ -154302,7 +155229,6 @@ description
 </code>
 fields
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -154557,10 +155483,10 @@ search-replace Operator
 <div>
 <p>Replace one string with another:</p>
 <div>
+<span>
 <code>
 [[The quick brown fox jumps over the lazy dog]search-replace[dog],[cat]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -154577,10 +155503,10 @@ Try it
 \define myregexp() e|o
 </code></p>
 <div>
+<span>
 <code>
 [[Hello There]search-replace:g:regexp&lt;myregexp&gt;,[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -154594,10 +155520,10 @@ Try it
 </div>
 <p>Replace all matches of a string irrespective of case:</p>
 <div>
+<span>
 <code>
 [[Hello There]search-replace:gi[H],[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -154614,10 +155540,10 @@ Try it
 \define names() (\w+)\s(\w+)
 </code></p>
 <div>
+<span>
 <code>
 [[John Smith]search-replace::regexp&lt;names&gt;,[$2,$1]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -154638,10 +155564,10 @@ multiline
 \define myregexp2() ^(?!Unlike).*$
 </code></p>
 <div>
+<span>
 <code>
 [[HelloThere]get[text]search-replace:gm:regexp&lt;myregexp2&gt;,[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -154663,10 +155589,10 @@ sortsub Operator
 </a>
 to ignore stop words like "A" and "The" at the beginning of titles when sorting. (Note for example that "A Tale of Two Cities" sorts under "T" rather than "A")</p>
 <div>
+<span>
 <code>
 [enlist&lt;book-list&gt;sortsub&lt;compare-without-stopwords&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -156701,6 +157627,9 @@ Working with the TiddlyWiki5 repository
 <option>
 Working with TiddlyWiki
 </option>
+<option>
+zth Operator
+</option>
 </select></p>
 </div>
 <p>The
@@ -157422,10 +158351,10 @@ sentencecase Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[abc def ghi jkl]sentencecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -157438,10 +158367,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[abc deF gHi jKL]sentencecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -157454,10 +158383,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[abc deF gHi jKL]lowercase[]sentencecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -157470,10 +158399,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]sentencecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -157928,6 +158857,169 @@ rendertype
 - the text type to render (defaults to "text/plain"; "text/html" can be used to include HTML tags)
 </li>
 </ul>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
+SetMultipleVariablesWidget
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+23rd October 2021 at 6:24pm
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+Widgets
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<div>
+<h1>
+Introduction
+</h1>
+<p>The setmultiplevariables widget assigns values to multiple
+<a>
+variables
+</a>
+where the names and values of the variables are specified as separate filter.</p>
+<h1>
+Content and Attributes
+</h1>
+<p>The content of the
+<code>
+&lt;$setmultiplevariables&gt;
+</code>
+widget is the scope for the value assigned to the variable.</p>
+<table>
+<tbody>
+<tr>
+<th>
+Attribute
+</th>
+<th>
+Description
+</th>
+</tr>
+<tr>
+<td>
+$names
+</td>
+<td>
+Filter evaluating to the names of a list of variables to assign
+</td>
+</tr>
+<tr>
+<td>
+$values
+</td>
+<td>
+Filter evaluating to the values corresponding to the list of names specified in
+<code>
+$names
+</code>
+</td>
+</tr>
+</tbody>
+</table>
+<h1>
+Examples
+</h1>
+<p>Here is an example of a convoluted way to display the values of the fields of the tiddler "
+<a>
+HelloThere
+</a>
+":</p>
+<div>
+<div>
+<div>
+<button>
+copy to clipboard
+</button>
+</div>
+</div>
+<pre>
+<code>
+&lt;$setmultiplevariables&gt; &lt;ol&gt; &lt;$list&gt; &lt;li&gt; ''&lt;$text text={{{ [&lt;currentTiddler&gt;removeprefix[demo-]] }}}/&gt;'': &lt;$text text={{{ [&lt;currentTiddler&gt;getvariable[]] }}}/&gt; &lt;/li&gt; &lt;/$list&gt; &lt;/ol&gt; &lt;/$setmultiplevariables&gt;
+</code>
+</pre>
+<p>That renders as:</p>
+<ol>
+<li>
+<strong>
+created
+</strong>
+: 20130822170200000
+</li>
+<li>
+<strong>
+list
+</strong>
+: [[A Gentle Guide to TiddlyWiki]] [[Discover TiddlyWiki]] [[Some of the things you can do with TiddlyWiki]] [[Ten reasons to switch to TiddlyWiki]] Examples [[What happened to the original TiddlyWiki?]] [[HelloThumbnail - TWEUM2017]]
+</li>
+<li>
+<strong>
+modified
+</strong>
+: 20211003151502543
+</li>
+<li>
+<strong>
+tags
+</strong>
+: TableOfContents
+</li>
+<li>
+<strong>
+text
+</strong>
+: ''Have you ever had the feeling that your head is not quite big enough to hold everything you need to remember?'' Welcome to TiddlyWiki, a unique [[non-linear|Philosophy of Tiddlers]] notebook for [[capturing|Creating and editing tiddlers]], [[organising|Structuring TiddlyWiki]] and [[sharing|Sharing your tiddlers with others]] complex information. Use it to keep your [[to-do list|TaskManagementExample]], to plan an [[essay or novel|"TiddlyWiki for Scholars" by Alberto Molina]], or to organise your wedding. Record every thought that crosses your brain, or build a flexible and responsive website. &lt;div&gt; &lt;&lt;list-thumbnails filter:"[tag[HelloThumbnail]]" width:"168" height:"95"&gt;&gt; &lt;/div&gt; Unlike conventional online services, TiddlyWiki lets you choose where to keep your data, guaranteeing that in the decades to come you will [[still be able to use|Future Proof]] the notes you take today. &lt;div&gt; &lt;a&gt; {{$:/core/images/help}} Forum &lt;/a&gt; &lt;a&gt; {{$:/core/images/video}} ~YouTube &lt;/a&gt; &lt;a&gt; {{$:/core/images/twitter}} Twitter &lt;/a&gt; &lt;a&gt; {{$:/core/images/github}} ~GitHub &lt;/a&gt; &lt;a&gt; {{$:/core/images/gitter}} Gitter &lt;/a&gt; &lt;/div&gt; &lt;&lt;&lt;.tc-big-quote ''The ~TiddlyWiki is the best software I've ever found for organising my ideas.'' It's well worth spending an hour or so playing with it to see how it can help you. This will be time well-spent and will change how you think and how you organise your ideas. &lt;&lt;&lt; [[Joe Armstrong, Co-inventor of Erlang|https://joearms.github.io/]] &lt;&lt;&lt;.tc-big-quote ''~TiddlyWiki gets a Gearhead rating of 6 out of 5 (it's that good).'' Finding code that works flawlessly after just two or three years is magical enough but after seven years?! &lt;&lt;&lt; [[Mark Gibbs, Network World|http://www.networkworld.com/article/3028098/open-source-tools/tiddlywiki-a-free-open-source-wiki-revisited.html]] &lt;div&gt; {{Product Hunt Link}}&lt;/div&gt;
+</li>
+<li>
+<strong>
+title
+</strong>
+: HelloThere
+</li>
+<li>
+<strong>
+type
+</strong>
+: text/vnd.tiddlywiki
+</li>
+</ol>
+</div>
 </div>
 <div>
 </div>
@@ -158733,10 +159825,10 @@ shadowsource Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[$:/core/copyright.txt]shadowsource[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -158749,10 +159841,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 $:/core/copyright.txt $:/plugins/tiddlywiki/railroad/parser.js +[shadowsource[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -159430,10 +160522,10 @@ sign Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[1.6]sign[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -159446,10 +160538,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[-1.6]sign[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -159462,10 +160554,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[0]sign[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -159920,10 +161012,10 @@ sin Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]sin[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -159936,10 +161028,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[sin[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160297,7 +161389,7 @@ Some of the things you can do with TiddlyWiki
 <div>
 <a>
 </a>
-2nd June 2016 at 7:17am
+18th October 2021 at 12:23pm
 </div>
 </div>
 <div>
@@ -160343,9 +161435,9 @@ Create a blog or website
 Write a book
 </li>
 <li>
-Organise your images into galleries (see our
+Organise your images into galleries (see
 <a>
-ImageGallery Example
+Icon Gallery
 </a>
 )
 </li>
@@ -160659,10 +161751,10 @@ Sort Filter Run Prefix
 <div>
 <p>Sort by title length:</p>
 <div>
+<span>
 <code>
 [all[tiddlers]] :sort:number[length[]] +[limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160676,10 +161768,10 @@ Try it
 </div>
 <p>Sort by title length reversed:</p>
 <div>
+<span>
 <code>
 [all[tiddlers]] :sort:number:reverse[length[]] +[limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160693,10 +161785,10 @@ Try it
 </div>
 <p>Sort by text length:</p>
 <div>
+<span>
 <code>
 [all[tiddlers]] :sort:number[get[text]length[]] +[limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160710,10 +161802,10 @@ Try it
 </div>
 <p>Sort by newest of modified dates:</p>
 <div>
+<span>
 <code>
 [tag[Field Operators]] :sort:date[get[modified]else[19700101]] +[limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160727,10 +161819,10 @@ Try it
 </div>
 <p>Sort by title:</p>
 <div>
+<span>
 <code>
 [tag[Field Operators]] :sort:string:casesensitive[get[caption]] +[limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160744,10 +161836,10 @@ Try it
 </div>
 <p>Sort by title in reverse order:</p>
 <div>
+<span>
 <code>
 [tag[Field Operators]] :sort:string:casesensitive,reverse[get[caption]] +[limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160761,10 +161853,10 @@ Try it
 </div>
 <p>Sort as text with case sensitivity:</p>
 <div>
+<span>
 <code>
 Apple Banana Orange Grapefruit guava DragonFruit Kiwi apple orange :sort:string:casesensitive[{!!title}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -160778,10 +161870,10 @@ Try it
 </div>
 <p>Sort as text ignoring case:</p>
 <div>
+<span>
 <code>
 Apple Banana Orange Grapefruit guava DragonFruit Kiwi apple orange :sort:string:caseinsensitive[{!!title}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161008,10 +162100,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]sort[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161024,10 +162116,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]!sort[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161040,10 +162132,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 one two Three four +[sort[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161056,10 +162148,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [prefix[Tiddl]sort[text]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161072,13 +162164,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [has[created]sort[created]limit[10]]
 </code>
 <dd>
 → the oldest 10 tiddlers in the wiki
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -161299,10 +162391,10 @@ Apple
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Apple]sortan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161315,10 +162407,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Apple]!sortan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161331,10 +162423,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 App-10-A App-9-B App-10-B App-9-A +[sortan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161515,10 +162607,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 10 6 4 9 3 2 8 +[sortby[1 2 3 4 5 6 7 8 9 10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161531,10 +162623,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 Friday Tuesday Monday Thursday Sunday +[sortby{Days of the Week!!list}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161547,10 +162639,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 1 Mon 5 Fri 4 Tue Sun 2 +[sortby{Days of the Week!!short}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161770,10 +162862,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 one two Three four +[sortcs[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -161786,10 +162878,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 one two Three four +[!sortcs[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162090,10 +163182,10 @@ compare-by-newest-of-modified-and-created-dates
 </li>
 </ul>
 <div>
+<span>
 <code>
 [sortsub:number&lt;compare-by-title-length&gt;limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162106,10 +163198,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!sortsub:number&lt;compare-by-title-length&gt;limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162122,10 +163214,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [sortsub:number&lt;compare-by-text-length&gt;limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162138,10 +163230,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!sortsub:number&lt;compare-by-text-length&gt;limit[10]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162154,10 +163246,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Field Operators]sortsub:date&lt;compare-by-newest-of-modified-and-created-dates&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162179,10 +163271,10 @@ sortsub Operator
 </a>
 to ignore stop words like "A" and "The" at the beginning of titles when sorting. (Note for example that "A Tale of Two Cities" sorts under "T" rather than "A")</p>
 <div>
+<span>
 <code>
 [enlist&lt;book-list&gt;sortsub&lt;compare-without-stopwords&gt;]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162507,10 +163599,10 @@ join Operator
 </a>
 . For example:</p>
 <div>
+<span>
 <code>
 [[the band thethe are the best the]split[the]join[every]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162582,10 +163674,10 @@ split Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[a b c d e]split[ ]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162598,10 +163690,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Mississippi]split[i]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162812,10 +163904,10 @@ splitbefore Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 2015-01-26 2014-07-19 2013 +[splitbefore[-]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -162828,10 +163920,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[green trees]splitbefore[ee]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -163012,10 +164104,10 @@ join Operator
 </a>
 . For example:</p>
 <div>
+<span>
 <code>
 [[nobody, really; wants; to see -- all this \punctuation]splitregexp[,|;|-|\\]join[...]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -163029,10 +164121,10 @@ Try it
 </div>
 <p>Syntax errors in the regular expression will cause the filter to return an error message. For example:</p>
 <div>
+<span>
 <code>
 [[the cat sat on the mat]splitregexp[\]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -163104,10 +164196,10 @@ splitregexp Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 a=b-c=d-e +[splitregexp[=|-]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -163290,10 +164382,10 @@ standard-deviation Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =3 =4 =5 +[standard-deviation[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -163310,10 +164402,10 @@ Try it
 NaN
 </code></p>
 <div>
+<span>
 <code>
 [title[NotATiddler]get[price]] +[standard-deviation[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -164116,10 +165208,10 @@ storyviews Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [storyviews[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -164491,10 +165583,10 @@ stringify Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Title with "double quotes" and single ' and \backslash]] +[stringify[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -164507,10 +165599,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Accents and emojis -&gt; äñøßπ ⌛🎄🍪🍓 without suffix]] +[stringify[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -164523,10 +165615,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[Accents and emojis -&gt; äñøßπ ⌛🎄🍪🍓 with rawunicode suffix]] +[stringify:rawunicode[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165140,10 +166232,10 @@ subfilter Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [subfilter[one two three]addsuffix[!]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165156,10 +166248,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [subfilter{$:/StoryList!!list}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165335,10 +166427,10 @@ plugintiddlers Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[$:/core/copyright.txt]subtiddlerfields[$:/core]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165529,10 +166621,10 @@ subtract Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[23]subtract[19]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165545,10 +166637,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[subtract[4]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165753,10 +166845,10 @@ suffix Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [suffix[.jpg]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165769,10 +166861,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[task]!suffix[ing]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165946,10 +167038,10 @@ sum Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 =5 +[sum[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -165962,10 +167054,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]get[text]length[]sum[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -167205,7 +168297,7 @@ SystemTag: $:/tags/Image
 <div>
 <a>
 </a>
-26th September 2018 at 7:14pm
+18th October 2021 at 12:23pm
 </div>
 </div>
 <div>
@@ -167227,7 +168319,10 @@ system tag
 <code>
 $:/tags/Image
 </code>
-marks (core) images</p>
+marks core images. An overview of system icons can be found in the
+<a>
+Icon Gallery
+</a></p>
 </div>
 <div>
 </div>
@@ -172685,10 +173780,10 @@ tag Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [tag[task]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -172701,10 +173796,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[task]!tag[done]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -172717,10 +173812,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [!tag[task]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -172733,10 +173828,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows]tag[$:/tags/Stylesheet]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -173324,6 +174419,7 @@ tagging Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[task]tagging[]]
 </code>
@@ -173333,7 +174429,6 @@ tagging Operator
 [tag[task]]
 </code>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -173346,6 +174441,7 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 Concepts task +[tagging[]]
 </code>
@@ -173359,7 +174455,6 @@ or
 task
 </strong>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -173372,13 +174467,13 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[current]tagging[]]
 </code>
 <dd>
 → tiddlers tagged with the current one
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -173556,10 +174651,10 @@ tags Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Filter Operators]tags[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -173572,10 +174667,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows]tags[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -173588,10 +174683,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows+tiddlers]tags[]sort[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -173832,10 +174927,10 @@ tan Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[2]tan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -173848,10 +174943,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =1 =2 =3 =4 +[tan[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -174499,7 +175594,7 @@ Text preview
 <div>
 <a>
 </a>
-17th August 2016 at 12:48pm
+29th October 2021 at 11:01am
 </div>
 </div>
 <div>
@@ -174519,11 +175614,11 @@ Editor toolbar
 </span>
 <span>
 </span>
-will open or close a preview window for your
+will open or close a preview window showing the results of rendering the
 <a>
 WikiText
 </a>
-(The icon-eye will also open or close).</p>
+(the icon-eye will also open or close).</p>
 <p>Right to the eye there is another icon, , which when clicked, shows you a dropdown which gives you access to six different types of preview:</p>
 <ul>
 <li>
@@ -174585,6 +175680,24 @@ shadow-tiddler
 .
 </li>
 </ul>
+<div>
+<div>
+</div>
+By default, the preview pane button controls whether the preview pane is displayed for all tiddlers that are open for editing. There is a
+<a>
+hidden setting
+</a>
+to make the button work on a per-tiddler basis
+</div>
+<div>
+<div>
+</div>
+The variable
+<a>
+tv-tiddler-preview
+</a>
+can be used to detect whether content is being displayed in the preview pane.
+</div>
 </div>
 <div>
 </div>
@@ -175516,10 +176629,10 @@ then Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[HelloThereMissing]is[missing]then[yes]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -175532,10 +176645,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]is[missing]then[yes]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -175997,10 +177110,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]before{!!title}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -176013,10 +177126,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[Days of the Week]after{!!title}]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -181987,7 +183100,7 @@ tiddlywiki.files Files
 <div>
 <a>
 </a>
-1st December 2020 at 1:00am
+15th December 2020 at 12:43am
 </div>
 </div>
 <div>
@@ -182268,7 +183381,15 @@ path
 <code>
 tiddlywiki.files
 </code>
-file). Note that the directory is not recursively searched; sub-directories are ignored
+file). Note that by default the directory is not recursively searched; sub-directories are ignored unless the
+<em>
+searchSubdirectories
+</em>
+flag is set to
+<code>
+true
+</code>
+(see below).
 </li>
 <li>
 <strong>
@@ -182302,7 +183423,11 @@ field without any parsing
 <strong>
 isEditableFile
 </strong>
-- (optional) if
+-
+<span>
+New in: 5.1.23
+</span>
+(optional) if
 <code>
 true
 </code>
@@ -182311,9 +183436,52 @@ true
 $:/config/FileSystemPath
 </a>
 filters, which will override the final filepath generated if a result is returned from a filter.
+</li>
+<li>
+<strong>
+searchSubdirectories
+</strong>
+-
 <span>
 New in: 5.1.23
 </span>
+(optional) if
+<code>
+true
+</code>
+, all subdirectories of the
+<em>
+path
+</em>
+are searched recursively for files that match the (optional)
+<em>
+filesRegExp
+</em>
+. If no
+<em>
+filesRegExp
+</em>
+is provided, all files in all subdirectoies of the
+<em>
+path
+</em>
+are loaded. Tiddler titles generated via a
+<em>
+source
+</em>
+attribute (see above) will only include the filename, not any of the subdirectories of the path. If this results in multiple files with loaded with the same tiddler title, then only the last file loaded under that tiddler title will be in memory. In order to prevent this, you must have multiple directory objects listed and customize the title field with a
+<em>
+prefix
+</em>
+or
+<em>
+suffix
+</em>
+alongside the
+<em>
+source
+</em>
+attribute.
 </li>
 <li>
 <strong>
@@ -182324,7 +183492,7 @@ fields
 </ul>
 </li>
 </ul>
-<p>Fields can be overridden for particular files by creating a file with the same name plus the suffix
+<p>Fields can also be overridden for particular files by creating a file with the same name plus the suffix
 <code>
 .meta
 </code>
@@ -184235,10 +185403,10 @@ title Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [title[HelloThere]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184251,10 +185419,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184267,10 +185435,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 HelloThere
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184283,10 +185451,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [title[HelloThere]] [title[Filter Operators]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184299,10 +185467,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[HelloThere]] [[Filter Operators]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184315,10 +185483,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 HelloThere [[Filter Operators]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184331,10 +185499,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Filters]] +[!title[Filter Operators]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184347,10 +185515,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Filters]] +[![Filter Operators]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184363,10 +185531,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[Filters]] -[[Filter Operators]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184619,10 +185787,10 @@ titlecase Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[abc def ghi jkl]titlecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184635,10 +185803,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[abc deF gHi jKL]titlecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184651,10 +185819,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[abc deF gHi jKL]lowercase[]titlecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184667,10 +185835,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]titlecase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -184956,10 +186124,10 @@ Days of the Week
 </a>
 tiddler.</p>
 <div>
+<span>
 <code>
 [list[Days of the Week]] +[toggle[Wednesday]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187683,10 +188851,10 @@ trim Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[ a b ]trim[]addprefix[-]addsuffix[-]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187699,10 +188867,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[ abc ]] [[def ]] [[ ghi]] +[trim[]addprefix[-]addsuffix[-]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187715,10 +188883,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[ abc ]] [[def ]] [[ ghi]] +[trim:prefix[]addprefix[-]addsuffix[-]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187731,10 +188899,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[ abc ]] [[def ]] [[ ghi]] +[trim:suffix[]addprefix[-]addsuffix[-]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187747,10 +188915,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 abacus baobab +[trim[ab]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187763,10 +188931,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 abacus baobab +[trim:prefix[ab]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -187779,10 +188947,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 abacus baobab +[trim:suffix[ab]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -188032,10 +189200,10 @@ trunc Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[1.6]trunc[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -188048,10 +189216,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[-1.6]trunc[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -188064,10 +189232,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =-1.2 =-2.4 =3.6 =4.8 =5.1 +[trunc[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192461,10 +193629,10 @@ filter run prefix
 </code>
 :</p>
 <div>
+<span>
 <code>
 =[[E]] =[[A]] =[[B]] =[[C]] =[[C]] =[[D]] =[[C]] +[unique[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192726,10 +193894,10 @@ untagged Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [untagged[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192742,10 +193910,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [all[shadows]untagged[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192758,10 +193926,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [list[HelloThere]!untagged[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192944,10 +194112,10 @@ untrunc Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[1.6]untrunc[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192960,10 +194128,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [[-1.6]untrunc[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -192976,10 +194144,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 =-1.2 =-2.4 =3.6 =4.8 =5.1 +[untrunc[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -193256,7 +194424,7 @@ Show the code
 </summary>
 <pre>
 <code>
-\define testCreate() &lt;$action-createtiddler $basetitle=&lt;&lt;unusedtitle template:"$count:2$-new"&gt;&gt;/&gt; \end \define testCreate1() &lt;$action-createtiddler $basetitle=&lt;&lt;unusedtitle baseName:"new" separator:"-" template:"$count:2$$separator$$basename$"&gt;&gt;/&gt; \end \define testNew() &lt;$action-sendmessage title=&lt;&lt;unusedtitle baseName:"new" template:"$count:2$-$basename$"&gt;&gt; /&gt; \end ``` &lt;&lt;unusedtitle template:"$count:2$-new"&gt;&gt; ``` &lt;$button actions=&lt;&lt;testCreate&gt;&gt; &gt; &lt;$action-setfield/&gt; Create Tiddler &lt;/$button&gt; ``` &lt;&lt;unusedtitle baseName:"new" template:"$count:2$-$basename$"&gt;&gt; ``` &lt;$button actions=&lt;&lt;testNew&gt;&gt;&gt; &lt;$action-setfield/&gt; New Tiddler &lt;/$button&gt; ``` &lt;&lt;unusedtitle baseName:"new" separator:"-" template:"$count:2$$separator$$basename$"&gt;&gt; ``` &lt;$button actions=&lt;&lt;testCreate1&gt;&gt;&gt; &lt;$action-setfield/&gt; Create Tiddler &lt;/$button&gt; --- &lt;details&gt; &lt;summary&gt;Show the code&lt;/summary&gt; &lt;pre&gt;&lt;code&gt;&lt;$view&gt;&lt;/code&gt;&lt;/pre&gt; &lt;/details&gt;
+\define testCreate() &lt;$action-createtiddler $basetitle=&lt;&lt;unusedtitle template:"$count:2$-new"&gt;&gt;/&gt; \end \define testCreate1() &lt;$action-createtiddler $basetitle=&lt;&lt;unusedtitle baseName:"new" separator:"-" template:"$count:2$$separator$$basename$"&gt;&gt;/&gt; \end \define testNew() &lt;$action-sendmessage title=&lt;&lt;unusedtitle baseName:"new" template:"$count:2$-$basename$"&gt;&gt; /&gt; \end ``` &lt;&lt;unusedtitle template:"$count:2$-new"&gt;&gt; ``` &lt;$button actions=&lt;&lt;testCreate&gt;&gt; &gt; &lt;$action-setfield/&gt; Create Tiddler &lt;/$button&gt; ``` &lt;&lt;unusedtitle baseName:"new" template:"$count:2$-$basename$"&gt;&gt; ``` &lt;$button actions=&lt;&lt;testNew&gt;&gt;&gt; &lt;$action-setfield/&gt; New Tiddler &lt;/$button&gt; ``` &lt;&lt;unusedtitle baseName:"new" separator:"-" template:"$count:2$$separator$$basename$"&gt;&gt; ``` &lt;$button actions=&lt;&lt;testCreate1&gt;&gt;&gt; &lt;$action-setfield/&gt; Create Tiddler &lt;/$button&gt; --- &lt;details&gt; &lt;summary&gt;Show the code&lt;/summary&gt; &lt;pre&gt;&lt;code&gt;&lt;$view&gt;&lt;pre&gt;&lt;code&gt; &lt;/details&gt;
 </code>
 </pre>
 </details>
@@ -194026,10 +195194,10 @@ uppercase Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [[Abc]uppercase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -194042,10 +195210,10 @@ Try it
 </span>
 </div>
 <div>
+<span>
 <code>
 [tag[HelloThere]uppercase[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -195056,7 +196224,7 @@ will not affect the output. As in the following example, you can wrap CSS rules 
 tags to display them as a codeblock without affecting processing, including handling the inner macro.</p>
 <pre>
 <code>
-\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html &lt;pre&gt; body.tc-body pre { &lt;&lt;box-shadow "inset 0 1px 0 #fff"&gt;&gt; } &lt;/pre&gt;
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html &lt;pre&gt;body.tc-body pre { &lt;&lt;box-shadow "inset 0 1px 0 #fff"&gt;&gt; } &lt;/pre&gt;
 </code>
 </pre>
 <h2>
@@ -196667,6 +197835,7 @@ variables Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 [variables[]prefix[colour]]
 </code>
@@ -196676,7 +197845,6 @@ variables Operator
 colour
 </strong>
 </dd>
-<span>
 <dl>
 <dd>
 <button>
@@ -196859,10 +198027,10 @@ variance Operator
 </div>
 <div>
 <div>
+<span>
 <code>
 1 3 4 5 +[variance[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -196879,10 +198047,10 @@ Try it
 NaN
 </code></p>
 <div>
+<span>
 <code>
 [title[NotATiddler]is[tiddler]get[price]] +[variance[]]
 </code>
-<span>
 <dl>
 <dd>
 <button>
@@ -196947,20 +198115,32 @@ Widgets
 Introduction
 </h1>
 <p>The
-<strong>
-vars
-</strong>
+<code>
+$vars
+</code>
 widget allows multiple variables to be set in one operation. In some situations it can result in simpler code than using the more flexible
 <a>
-SetWidget
+<code>
+$set
+</code>
 </a>
+widget. It differs from the
+<a>
+<code>
+$let
+</code>
+</a>
+in that variables cannot interfere with the evaluation of other variables within the same
+<code>
+$vars
+</code>
 .</p>
 <h1>
 Content and Attributes
 </h1>
 <p>The content of the
 <code>
-&lt;$vars&gt;
+$vars
 </code>
 widget is the scope for the value assigned to the variable.</p>
 <table>
@@ -196985,13 +198165,26 @@ Each attribute name specifies a variable name. The attribute value is assigned t
 </tr>
 </tbody>
 </table>
+<p>Attributes will not interfere with the evaluation of other attributes. So if one attribute sets
+<code>
+currentTiddler
+</code>
+, and another attribute uses
+<code>
+currentTiddler
+</code>
+in its evaluation, it will use the value of
+<code>
+currentTiddler
+</code>
+that exists outside the widget's scope.</p>
 <h1>
 Examples
 </h1>
 <p>Consider a case where you need to set multiple variables.</p>
 <p>Using the
 <code>
-&lt;$vars&gt;
+$vars
 </code>
 widget, this situation may be handled in the following way:</p>
 <pre>
@@ -197001,7 +198194,7 @@ widget, this situation may be handled in the following way:</p>
 </pre>
 <p>In contrast, here is the same example using the
 <code>
-&lt;$set&gt;
+$set
 </code>
 widget:</p>
 <pre>
@@ -197012,7 +198205,11 @@ widget:</p>
 <h1>
 Remarks
 </h1>
-<p>It should be noted that this widget differs from the set widget in the following ways:</p>
+<p>It should be noted that this widget differs from the
+<code>
+$set
+</code>
+widget in the following ways:</p>
 <ul>
 <li>
 A fallback (also known as "emptyValue") cannot be specified
@@ -203683,6 +204880,19 @@ Text to be inserted
 </div>
 </td>
 </tr>
+<tr>
+<td>
+<dfn>
+focus-editor
+</dfn>
+</td>
+<td>
+<span>
+New in: 5.2.0
+</span>
+Simply focuses the Text Editor
+</td>
+</tr>
 </tbody>
 </table>
 <h1>
@@ -207427,6 +208637,11 @@ action-setfield
 </li>
 <li>
 <a>
+action-setmultiplefields
+</a>
+</li>
+<li>
+<a>
 ActionWidgets
 </a>
 </li>
@@ -207537,6 +208752,11 @@ keyboard
 </li>
 <li>
 <a>
+let
+</a>
+</li>
+<li>
+<a>
 linkcatcher
 </a>
 </li>
@@ -207598,6 +208818,11 @@ scrollable
 <li>
 <a>
 select
+</a>
+</li>
+<li>
+<a>
+setmultiplevariables
 </a>
 </li>
 <li>
@@ -207817,6 +209042,11 @@ action-setfield
 </li>
 <li>
 <a>
+action-setmultiplefields
+</a>
+</li>
+<li>
+<a>
 ActionWidgets
 </a>
 </li>
@@ -207927,6 +209157,11 @@ keyboard
 </li>
 <li>
 <a>
+let
+</a>
+</li>
+<li>
+<a>
 linkcatcher
 </a>
 </li>
@@ -207988,6 +209223,11 @@ scrollable
 <li>
 <a>
 select
+</a>
+</li>
+<li>
+<a>
+setmultiplevariables
 </a>
 </li>
 <li>
@@ -209094,6 +210334,242 @@ spreadsheets generated by applications like Microsoft Excel and Google Sheets. I
 <p><a>
 https://tiddlywiki.com/editions/xlsx-utils/
 </a></p>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
+zth Operator
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+29th October 2021 at 4:37am
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+Filter Operators
+</span>
+<span>
+</span>
+</span>
+<span>
+<span>
+Order Operators
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<table>
+<tr>
+<th>
+purpose
+</th>
+<td>
+select the
+<code>
+Z
+</code>
+th input title
+</td>
+</tr>
+<tr>
+<th>
+<a>
+input
+</a>
+</th>
+<td>
+a
+<a>
+selection of titles
+</a>
+</td>
+</tr>
+<tr>
+<th>
+<a>
+parameter
+</a>
+</th>
+<td>
+<code>
+Z
+</code>
+= an integer, defaulting to 0
+</td>
+</tr>
+<tr>
+<th>
+output
+</th>
+<td>
+the
+<code>
+Z
+</code>
+th input title
+</td>
+</tr>
+</table>
+<div>
+<p><span>
+New in: 5.2.1
+</span></p>
+<p><code>
+Z
+</code>
+is zero-based. In other words,
+<code>
+zth[0]
+</code>
+has the same effect as
+<code>
+nth[1]
+</code>
+and the
+<a>
+<code>
+first
+</code>
+</a>
+operator.</p>
+<div>
+<div>
+</div>
+See
+<a>
+<code>
+nth
+</code>
+</a>
+for an equivalent operator with a 1 based parameter
+</div>
+<p><a>
+Examples
+</a></p>
+</div>
+<div>
+</div>
+</div>
+</a>
+<a>
+<div>
+<div>
+<div>
+<span>
+<button>
+</button>
+<div>
+</div>
+<button>
+</button>
+<button>
+</button>
+</span>
+<span>
+<h2>
+zth Operator (Examples)
+</h2>
+</span>
+</div>
+<div>
+</div>
+</div>
+<div>
+</div>
+<div>
+<div>
+<a>
+</a>
+29th October 2021 at 4:35am
+</div>
+</div>
+<div>
+<div>
+<span>
+<span>
+Operator Examples
+</span>
+<span>
+</span>
+</span>
+<span>
+<span>
+zth Operator
+</span>
+<span>
+</span>
+</span>
+</div>
+</div>
+<div>
+<p>These examples make use of the
+<a>
+Days of the Week
+</a>
+tiddler.</p>
+<div>
+<span>
+<code>
+[list[Days of the Week]zth[]]
+</code>
+<dl>
+<dd>
+<button>
+Try it
+</button>
+</dd>
+</dl>
+</span>
+<span>
+</span>
+</div>
+<div>
+<span>
+<code>
+[list[Days of the Week]zth[5]]
+</code>
+<dl>
+<dd>
+<button>
+Try it
+</button>
+</dd>
+</dl>
+</span>
+<span>
+</span>
+</div>
 </div>
 <div>
 </div>
