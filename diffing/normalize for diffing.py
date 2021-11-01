@@ -93,13 +93,13 @@ with stay_open_on_error ():
 # (NOTE) 	https://pypi.org/project/regex/, 'pip install regex'
 	import regex
 
-	old = 'masterbranch static.html'
-	new = 'featurebranch static.html'
+	master_static = 'masterbranch static.html'
+	feature_static = 'featurebranch static.html'
 
 	def norm(path):
 		print(f'Normalizing {path} ...')
 
-		isnew = 'featurebranch' in path
+		is_feature = 'featurebranch' in path
 
 # (NOTE) 		My PR removes so many of these invalid p's that the diff
 # (NOTE) 		becomes unreadable. So i remove them from the masterbranch
@@ -109,7 +109,7 @@ with stay_open_on_error ():
 # (NOTE) 		of other PR's (for example a's wrapping elements which
 # (NOTE) 		contain other a's, a div containing styles inside of the
 # (NOTE) 		head)
-		show_invalid_ps_in_masterbranch = False
+		show_invalid_ps_in_master = False
 
 		text = contents (realpath (path))
 
@@ -170,13 +170,13 @@ with stay_open_on_error ():
 
 		# (CLOSE)
 		# (OPEN) :Linebreak escapers
-		if isnew:
+		if is_feature:
 			remove('linebreak escapers from escaped html (only featurebranch)',
 				r'(?<=&gt;)\\(?=\n)'
 			)
 		# (CLOSE)
 		# (OPEN) :Remove empty p´s
-		if not isnew:
+		if not is_feature:
 
 		# (NOTE) 	Those get eg. created by the navigator widget in the Tiddler
 		# (NOTE) 	'Creating SubStories'.
@@ -184,8 +184,8 @@ with stay_open_on_error ():
 				r'<p> \s* </p>'
 			)
 		# (CLOSE)
-		# (OPEN) :Remove invalid p´s wrapping blockelements from the old wiki
-		if not isnew and not show_invalid_ps_in_masterbranch:
+		# (OPEN) :Remove invalid p´s wrapping blockelements from the masterbranch wiki
+		if not is_feature and not show_invalid_ps_in_master:
 
 		# (NOTE) 	We can not do this using regexes because eg it will not catch (but
 		# (NOTE) 	should) ...
@@ -195,7 +195,7 @@ with stay_open_on_error ():
 		# (NOTE) 		</p>
 		# (NOTE) 	... so instead we use a mini parser.
 
-			print('  Remove p´s we dont want from old wiki')
+			print('  Remove p´s we dont want from masterbranch wiki')
 
 			blockelems = (
 				'(?:div|ul|ol|dl|table|tr|td|h[1-6]|p|pre|style|blockquote)'
@@ -289,13 +289,13 @@ with stay_open_on_error ():
 		# (CLOSE)
 		text = text.strip()
 
-		newpath = Path (path.replace('.html', ' normalized.html'))
-		set_contents (newpath, text)
+		normalized = Path (path.replace('.html', ' normalized.html'))
+		set_contents (normalized, text)
 
 		print('...done\n')
 
-	norm(old)
-	norm(new)
+	norm(master_static)
+	norm(feature_static)
 
 	print('ALL DONE')
 	sleep (2)
