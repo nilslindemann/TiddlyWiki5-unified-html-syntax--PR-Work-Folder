@@ -1,7 +1,7 @@
 This is the work folder for my [refined-html-syntax](https://github.com/Jermolene/TiddlyWiki5/pull/6156) pull request for [TiddlyWiki](https://github.com/Jermolene/TiddlyWiki5).
 
 * For the batches inside _diffing_ and _doc_ to work, make sure you have [Node.js](https://nodejs.org/en/) installed and [my fork of the TiddlyWiki codebase](https://github.com/nilslindemann/TiddlyWiki5) locally available. Do not change the name of the _TiddlyWiki5_ folder, and put this work folder aside of it. Alternatively, edit the relative links in the batches.
-* For the python script to work, you further need [Python](https://www.python.org/), and the [regex](https://pypi.org/project/regex/) module (run `pip install regex` in a console).
+* For the Python script inside _diffing_ to work, you further need [Python](https://www.python.org/), and the [regex](https://pypi.org/project/regex/) module (run `pip install regex` in a console).
 
 The _run all tiddlywiki tests.bat_ runs the tests contained in the _editions/test_ wiki in my fork of the TiddlyWiki5 Repo.
 
