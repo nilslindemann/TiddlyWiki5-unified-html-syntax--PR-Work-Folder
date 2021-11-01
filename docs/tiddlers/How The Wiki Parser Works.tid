@@ -1,6 +1,6 @@
 created: 20211020015607830
 creator: Nils
-modified: 20211023053836249
+modified: 20211101004153484
 modifier: Nils
 tags: doc
 title: How The Wiki Parser Works
@@ -12,7 +12,7 @@ type: text/vnd.tiddlywiki
 I don't understand much about how the parser works
 <<< [[Arlen22|https://github.com/Jermolene/TiddlyWiki5/pull/4290#issuecomment-945017535]]
 
-""">> //and other interested people, explaining how the [[TiddlyWiki|https://tiddlywiki.com/]] [[WikiText|https://tiddlywiki.com/#WikiText]] parser works. It fits here, because my pull request makes changes to the parser in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]] and [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]]//.
+""">> //and other interested people, explaining how the [[TiddlyWiki|https://tiddlywiki.com/]] [[WikiText|https://tiddlywiki.com/#WikiText]] parser works. It fits here, because my [[pull request|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] makes changes to the parser in [[wikiparser.js|$:/core/modules/parsers/wikiparser/wikiparser.js]] and [[html.js|$:/core/modules/parsers/wikiparser/rules/html.js]]//.
 
 ---
 
