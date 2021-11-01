@@ -1,6 +1,6 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211031105715778
+modified: 20211101040628065
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
@@ -276,6 +276,12 @@ inline
 
 >>
 
+Here,
+
+* //block// means: When viewed in the browser, it forms a block, which is vertically separated from its siblings by "empty lines".
+* //inline// means: When viewed in a browser, it and its siblings and children are together in a horizontal line, which wraps around.
+* //block text// means: Inline text which, together with other inline elements, is wrapped in a block building paragraph.
+* //block element// means: it is block building itself, it does not need to (and should not) get wrapped in a paragraph.
 
 !!! It should wrap an element in a paragraph and parse the children in inline mode, when there is no newline after the opening tag
 
