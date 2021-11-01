@@ -2,9 +2,9 @@ echo off
 
 echo EXPORT "DOCS" WIKI TO SINGLE FILE
 
-echo ***********************************************************
-echo Please make sure the "REFINED-HTML-SYNTAX" branch is active
-echo ***********************************************************
+echo *******************************************************************************************
+echo The online Wiki is generated with this batch and the REFINED-HTML-SYNTAX-DIFF branch active
+echo *******************************************************************************************
 
 echo Export to a single-file wiki ...
 node ../../TiddlyWiki5/tiddlywiki.js --rendertiddler $:/core/save/all singlefile.html text/plain
