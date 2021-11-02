@@ -1,6 +1,6 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211101040628065
+modified: 20211101083058965
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
@@ -87,7 +87,7 @@ The Wrap Parent syntax gets modified, so that it requires exactly zero line brea
 
 !!! New //No Wrap// syntax
 
-We add a //No Wrap// syntax which gets triggered when we add exactly one line break after the opening tag (which previously triggered the Wrap Parent syntax). This allows us to create HTML output without any paragraph wrapping:
+We [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/4da38b0ef4f601fb30517e85dad7b6dcb75511ae]] a //No Wrap// syntax which gets triggered when we add exactly one line break after the opening tag (which previously triggered the Wrap Parent syntax). This allows us to create HTML output without any paragraph wrapping:
 
 <<one-example
 "<parent>
@@ -107,7 +107,7 @@ These three syntaxes intuitively document where the paragraph will be added in t
 
 !!! New syntax for an escaped linebreak
 
-Further, we add a syntax for an //escaped line break//:
+Further, we [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/a2c8d3a9a6b03481e4fac8eb0f4d174058538b8b]] a syntax for an //escaped line break//:
 
 <<one-example
 "<parent>\
@@ -278,10 +278,10 @@ inline
 
 Here,
 
-* //block// means: When viewed in the browser, it forms a block, which is vertically separated from its siblings by "empty lines".
+* //block// means: When viewed in a browser, it forms a block, which is vertically separated from its siblings by "empty lines".
 * //inline// means: When viewed in a browser, it and its siblings and children are together in a horizontal line, which wraps around.
 * //block text// means: Inline text which, together with other inline elements, is wrapped in a block building paragraph.
-* //block element// means: it is block building itself, it does not need to (and should not) get wrapped in a paragraph.
+* //block element// means: it is block building itself, it does not need to ([[and should not|https://html.spec.whatwg.org/multipage/dom.html#phrasing-content]]) get wrapped in a paragraph.
 
 !!! It should wrap an element in a paragraph and parse the children in inline mode, when there is no newline after the opening tag
 
