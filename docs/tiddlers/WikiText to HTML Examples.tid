@@ -1,6 +1,6 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211104095139493
+modified: 20211104102344621
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
@@ -64,7 +64,7 @@ child
 
 !! The problem
 
-... is, that these syntaxes alone can not generate html, where //nothing// gets wrapped in paragraphs. For example, this html can currently not be generated with WikiText:
+... is, that these syntaxes alone can not generate html, where //nothing// gets wrapped in paragraphs. For example, the following html can currently not be generated with these syntaxes:
 
 <div class="output">
 
@@ -83,14 +83,28 @@ child
 Therefore, my [[pull request|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] suggests the following syntax changes:
 
 
-!!! Partially modified old syntaxes
+!!! Unchanged syntaxes
 
-The Wrap Child syntax from above stays unchanged.
+* The Wrap Child syntax stays unchanged.
+
+
+!!! Modified syntaxes
+
+* <div>
 
 The Wrap Parent syntax gets modified, so that it requires exactly zero line breaks after the opening tag (previously zero or one).
 
+</div>
+* <div>
 
-!!! New //No Wrap// syntax
+Another syntax change is, that //self-closing// and //void// elements do not get wrapped in paragraphs anymore in the html. I document later in the text how we can achieve wrapping in these cases.
+
+</div>
+
+
+!!! Added syntaxes
+
+* <div>
 
 We [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/4da38b0ef4f601fb30517e85dad7b6dcb75511ae]] a //No Wrap// syntax which gets triggered when we add exactly one line break after the opening tag (which previously triggered the Wrap Parent syntax). This allows us to generate html without any paragraph wrapping:
 
@@ -103,18 +117,19 @@ child
 </parent></p>"
 >>
 
-We then have three syntaxes, which intuitively document where the paragraph will be added in the html.
+  We then have three syntaxes, which intuitively document where the paragraph will be added in the html.
 
 * ''No line break'' after the opening tag: The ''parent gets wrapped''.
 * ''One line break'' after the opening tag: ''Nothing gets wrapped''.
 * ''Two line breaks'' after the opening tag: The ''child gets wrapped''.
 
+</div>
 
-!!! New syntax for an escaped line break
+* <div>
 
 Further, we [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/a2c8d3a9a6b03481e4fac8eb0f4d174058538b8b]] a syntax for an //escaped line break//:
 
-<<one-example
+  <<one-example
 "<parent>\
 child
 </parent>"
@@ -125,13 +140,13 @@ child
 
 It is syntactical sugar; It allows a pretty formatting of the html in the WikiText, while still wrapping the outermost element in a paragraph in the generated html.
 
-
-!!! New handling of self-closing and void elements
-
-Another syntax change is, that //self-closing// and //void// elements (more info below) do not get wrapped in paragraphs anymore in the html. I document later in the text how we can achieve wrapping in these cases.
+</div>
 
 
-!!! Test It
+
+
+
+!! Test It
 
 The syntaxes are active in this wiki, and you can play around with them by creating a new Tiddler (The "plus" button on the right). Enable the HTML preview (click the "eye" icon in the edit mode, and choose "raw HTML" from the drop-down button right to it), to see which html you generate with your [[WikiText|https://tiddlywiki.com/#WikiText]].
 
