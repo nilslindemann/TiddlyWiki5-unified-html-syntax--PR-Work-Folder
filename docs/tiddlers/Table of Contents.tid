@@ -1,13 +1,13 @@
 created: 20211020011038050
 creator: Nils
 icon: $:/favicon.ico
-modified: 20211031105515698
+modified: 20211104075801039
 modifier: Nils
 tags: 
 title: Table of Contents
 type: text/vnd.tiddlywiki
 
-This wiki serves as a documentation for my pull request [[refined-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] for the [[TiddlyWiki|https://tiddlywiki.com/]] codebase.
+This wiki documents [[my pull request "refined-html-syntax"|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] for the [[code base|https://github.com/Jermolene/TiddlyWiki5]] of [[TiddlyWiki|https://tiddlywiki.com/]].
 
 <<list-links "[tag[doc]!is[system]sort[created]]">>
 
@@ -17,5 +17,5 @@ These are meta tiddlers I created:
 
 Credits go to [[kookmas|https://github.com/kookma]] for his [[refnotes|$:/plugins/kookma/refnotes]] plugin, which I use in this wiki.
 
-//I put the contents of this wiki into the public domain -- [[Nils]] 2021-10-31//
+//I put the contents of this wiki into the public domain -- [[Nils]] 2021-11-04//
 

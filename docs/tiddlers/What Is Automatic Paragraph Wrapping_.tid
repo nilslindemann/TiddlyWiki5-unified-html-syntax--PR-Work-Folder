@@ -1,10 +1,10 @@
 created: 20211021213627744
-modified: 20211031105629569
+modified: 20211104080210544
 tags: doc
 title: What Is Automatic Paragraph Wrapping?
 type: text/vnd.tiddlywiki
 
-//Automatic paragraph wrapping// is when the wikiparser (like most [[markdown|https://en.wikipedia.org/wiki/Lightweight_markup_language]] parsers) converts blocks of [[WikiText|https://tiddlywiki.com/#WikiText]], separated by empty lines, to [[HTML paragraphs|https://www.w3schools.com/html/html_paragraphs.asp]].
+//Automatic paragraph wrapping// is when the wikiparser (like most [[markdown|https://thereaderwiki.com/en/Lightweight_markup_language]] parsers) converts blocks of [[WikiText|https://tiddlywiki.com/#WikiText]], separated by empty lines, to [[HTML paragraphs|https://www.w3schools.com/html/html_paragraphs.asp]].
 
 We can put this text into a [[Tiddler|https://tiddlywiki.com/#Tiddlers]]:
 

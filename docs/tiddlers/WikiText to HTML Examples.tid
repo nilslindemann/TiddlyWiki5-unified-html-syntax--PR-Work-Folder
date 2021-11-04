@@ -1,25 +1,30 @@
 created: 20211020005924040
 creator: Nils
-modified: 20211101083058965
+modified: 20211104095139493
 modifier: Nils
 tags: doc
 title: WikiText to HTML Examples
 type: text/vnd.tiddlywiki
 
-Here we compare [[HTML|https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics]] created in the TiddlyWiki master [[branch|https://en.wikipedia.org/wiki/Branching_(version_control)]] and in the [[refined-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] branch.
+Here I show examples of [[WikiText|https://tiddlywiki.com/#WikiText]], and the [[html|https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/HTML_basics]] it generates.
+
+I compare the html generated in the TiddlyWiki [[master|https://github.com/Jermolene/TiddlyWiki5]] branch with the html generated in my [[refined-html-syntax|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] branch.
+<<fnote "
+See [[Branching (version control)|https://thereaderwiki.com/en/Branching_(version_control)]] for what a branch is.
+">>
 
 <div class="examples">
 
 <table>
 <tr>
-<td class="example">
-//The [[WikiText|https://tiddlywiki.com/#WikiText]] input is shown here//
+<td class="wikitext input example">
+//The ''WikiText input'' is shown here//
 </td>
-<td class="example">
-//The resulting HTML output in the ''master branch'' is shown here//
+<td class="masterbranch output example">
+//The ''generated html'' in the ''master branch'' is shown here//
 </td>
-<td class="example">
-//The resulting HTML output in the ''"unified-html-syntax" branch'' is shown here//
+<td class="featurebranch output example">
+//The ''generated html'' in the ''"refined-html-syntax" branch'' is shown here//
 </td>
 </tr>
 </table>
@@ -30,16 +35,16 @@ Here we compare [[HTML|https://developer.mozilla.org/en-US/docs/Learn/Getting_st
 
 !! Current syntaxes
 
-Currently we have two syntaxes in WikiText, to let the user control, where [[automatic paragraph wrapping|What Is Automatic Paragraph Wrapping?]] happens:
+Currently, we have two syntaxes in WikiText, to let the user control, where [[automatic paragraph wrapping|What Is Automatic Paragraph Wrapping?]] happens:
 
-//Wrap Parent syntax//. Zero or one line break after the opening tag in the WikiText will wrap the parent, but not the child, in a paragraph in the HTML output:
+//Wrap Parent syntax//. Zero or one line break after the opening tag in the WikiText will wrap the parent, but not the child, in a paragraph in the html:
 
 <<one-example
 "<parent>child</parent>"
 "<p><parent>child</parent></p>"
 >>
 
-//Wrap Child syntax//. Two or more line breaks after the opening tag in the WikiText will wrap the child, but not the parent, in a paragraph in the HTML Output:
+//Wrap Child syntax//. Two or more line breaks after the opening tag in the WikiText will wrap the child, but not the parent, in a paragraph in the html:
 
 <<one-example
 
@@ -59,7 +64,7 @@ child
 
 !! The problem
 
-... is, that these syntaxes alone can not generate html, where //nothing// gets wrapped in paragraphs. For example, this HTML output can currently not be generated in WikiText:
+... is, that these syntaxes alone can not generate html, where //nothing// gets wrapped in paragraphs. For example, this html can currently not be generated with WikiText:
 
 <div class="output">
 
@@ -75,7 +80,7 @@ child
 
 !! Suggested syntax changes
 
-Therefore, my pull request suggests the following syntax changes:
+Therefore, my [[pull request|https://github.com/Jermolene/TiddlyWiki5/pull/6156]] suggests the following syntax changes:
 
 
 !!! Partially modified old syntaxes
@@ -87,7 +92,7 @@ The Wrap Parent syntax gets modified, so that it requires exactly zero line brea
 
 !!! New //No Wrap// syntax
 
-We [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/4da38b0ef4f601fb30517e85dad7b6dcb75511ae]] a //No Wrap// syntax which gets triggered when we add exactly one line break after the opening tag (which previously triggered the Wrap Parent syntax). This allows us to create HTML output without any paragraph wrapping:
+We [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/4da38b0ef4f601fb30517e85dad7b6dcb75511ae]] a //No Wrap// syntax which gets triggered when we add exactly one line break after the opening tag (which previously triggered the Wrap Parent syntax). This allows us to generate html without any paragraph wrapping:
 
 <<one-example
 "<parent>
@@ -98,14 +103,14 @@ child
 </parent></p>"
 >>
 
-These three syntaxes intuitively document where the paragraph will be added in the HTML output.
+We then have three syntaxes, which intuitively document where the paragraph will be added in the html.
 
-* ''No linebreak'' after the opening tag: The ''parent gets wrapped''.
-* ''One linebreak'' after the opening tag: ''Nothing gets wrapped''.
-* ''Two linebreaks'' after the opening tag: The ''child gets wrapped''.
+* ''No line break'' after the opening tag: The ''parent gets wrapped''.
+* ''One line break'' after the opening tag: ''Nothing gets wrapped''.
+* ''Two line breaks'' after the opening tag: The ''child gets wrapped''.
 
 
-!!! New syntax for an escaped linebreak
+!!! New syntax for an escaped line break
 
 Further, we [[add|https://github.com/Jermolene/TiddlyWiki5/pull/6156/commits/a2c8d3a9a6b03481e4fac8eb0f4d174058538b8b]] a syntax for an //escaped line break//:
 
@@ -118,17 +123,17 @@ child
 </parent></p>"
 >>
 
-It is syntactical sugar; It allows a pretty formatting of the html in the WikiText, while still wrapping the outermost element in a paragraph in the HTML output.
+It is syntactical sugar; It allows a pretty formatting of the html in the WikiText, while still wrapping the outermost element in a paragraph in the generated html.
 
 
 !!! New handling of self-closing and void elements
 
-Another syntax change is, that //self-closing// and //void// elements (more infos below) do not get wrapped in paragraphs any more in the HTML output. I document later in the text how we can achieve wrapping in these cases.
+Another syntax change is, that //self-closing// and //void// elements (more info below) do not get wrapped in paragraphs anymore in the html. I document later in the text how we can achieve wrapping in these cases.
 
 
 !!! Test It
 
-The syntaxes are active in this wiki and you can play around with them by creating a new Tiddler (The "plus" button on the right). Enable the HTML preview (click the "eye" icon in the edit mode, and choose "raw HTML" from the drop-down button right to it), to see which HTML output you create with your [[WikiText|https://tiddlywiki.com/#WikiText]] input.
+The syntaxes are active in this wiki, and you can play around with them by creating a new Tiddler (The "plus" button on the right). Enable the HTML preview (click the "eye" icon in the edit mode, and choose "raw HTML" from the drop-down button right to it), to see which html you generate with your [[WikiText|https://tiddlywiki.com/#WikiText]].
 
 
 
@@ -171,7 +176,7 @@ The following examples partially reflect //editions/test/tiddlers/tests/test-wik
 <strong>Hi!</strong></span></div></article></section></p>"
 >>
 
-//Which leads to the next example confusing me. To improve the debugging experience, I would like when after a missing tag all remaining html tags in the WikiText are parsed as [[HTML-escaped|https://stackoverflow.com/a/43738178]] raw text. But this is the topic of another pull request.//
+//Which leads to the next example confusing me. To improve the debugging experience, I would like when after a missing tag, all remaining html tags in the WikiText are parsed as [[HTML-escaped|https://stackoverflow.com/a/43738178]] raw text. But this is the topic of another pull request.//
 
 
 !!! It should otherwise indicate an invalid html structure, by partially parsing tags as raw text
@@ -210,6 +215,10 @@ The following examples partially reflect //editions/test/tiddlers/tests/test-wik
 
 >>
 
+Notice, the way //self-closing tags// -- //`<elem/>`// -- are parsed in WikiText is different from the way they are parsed in HTML5.
+
+* In HTML5, only [[void|http://xahlee.info/js/html5_non-closing_tag.html]] elements can optionally have a `/`. You can write `<img/>`, which is the same as writing `<img>`. But you can not write `<button/>`, as buttons are not void elements. You have to write `<button></button>`.
+* In WikiText all elements can be written using the self-closing syntax. If the element is a void element, the `/` gets removed -- `<img/>` → `<img>` -- and if it is not a void element, a closing tag is added -- `<button/>` → `<button></button>`. This is also how it is done in XML, except that in XML the `/` is //required// for void elements.
 
 !!! It should automatically wrap in paragraphs
 
@@ -320,7 +329,7 @@ An //escaped line break// is a backslash (`\`) followed by a newline. Both the b
 
 </table>
 
-The escaped line break will //only// be removed, when it follows //directly// after the opening tag. In all other locations it stays in the source, and does not affect in which mode the element is parsed (in the last example the span stays unwrapped because of the newline after the opening tag, not because of the `\`).
+The escaped line break will //only// be removed, when it follows //directly// after the opening tag. In all other locations it stays in the generated html, and does not affect in which mode the element is parsed (in the last example the span stays unwrapped because of the newline after the opening tag in the WikiText, not because of the `\`).
 
 <table>
 
@@ -379,7 +388,7 @@ The escaped line break is helpful for a pretty WikiText code layout.
 "<pretty>\
 <wikitext-layout>
 <but-still>
-wrapped in a p
+wrapped in a paragraph
 </but-still>
 </wikitext-layout>
 </pretty>"
@@ -387,27 +396,27 @@ wrapped in a p
 "<p><pretty>\
 <wikitext-layout>
 <but-still>
-wrapped in a p
+wrapped in a paragraph
 </but-still>
 </wikitext-layout>
 </pretty></p>"
 
 >>
 
-Without the linebreak-escaper, in order to wrap the outermost element in a paragraph, we would have to write
+Without the backslash, in order to wrap the outermost element in a paragraph, we would have to write
 
 <<one-example
 
 "<not-so-pretty><wikitext-layout>
 <to-be>
-wrapped in a p
+wrapped in a paragraph
 </to-be>
 </wikitext-layout>
 </not-so-pretty>"
 
 "<p><not-so-pretty><wikitext-layout>
 <to-be>
-wrapped in a p
+wrapped in a paragraph
 </to-be>
 </wikitext-layout>
 </not-so-pretty></p>"
