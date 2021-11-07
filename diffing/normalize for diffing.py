@@ -106,7 +106,7 @@ with stay_open_on_error ():
 # (NOTE) 	head)
 	show_invalid_ps_in_master = False
 
-# (NOTE) 	Currently this will result in both files having the same
+# (NOTE) 	Currently, `True` will result in both files having the same
 # (NOTE) 	amount of lines, and they can then be compared using the
 # (NOTE) 	`log differences.py`
 	line_by_line_comparable = False
