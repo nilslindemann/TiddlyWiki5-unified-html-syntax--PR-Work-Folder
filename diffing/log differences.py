@@ -18,11 +18,11 @@ def realpath(path_string):
 # (CLOSE)
 
 # (NOTE) Quick and dirty script which counts and logs the differences between
-# (NOTE) `featurebranch static normalized.html` and `masterbranch static normalized.html`.
-# (NOTE) For this to work, the files have to be normalized, so that identical lines have
-# (NOTE) the same line number. Currently this will be the case if you set
-# (NOTE) `line_by_line_comparable` to True in `normalize for diffing.py` (append
-# (NOTE) ` loggable` to the file names).
+# (NOTE) `featurebranch static normalized loggable.html` and
+# (NOTE) `masterbranch static normalized loggable.html`. For this to work, the files
+# (NOTE) have to be normalized, so that identical lines have the same line number.
+# (NOTE) Currently this will be the case if you set `line_by_line_comparable` to True in
+# (NOTE) `normalize for diffing.py` (append " loggable" to the file names).
 
 f = contents (realpath ('featurebranch static normalized loggable.html'), encoding="mbcs").splitlines()
 m = contents (realpath ('masterbranch static normalized loggable.html'), encoding="mbcs").splitlines()
