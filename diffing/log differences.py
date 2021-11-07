@@ -22,7 +22,8 @@ def realpath(path_string):
 # (NOTE) `masterbranch static normalized loggable.html`. For this to work, the files
 # (NOTE) have to be normalized, so that identical lines have the same line number.
 # (NOTE) Currently this will be the case if you set `line_by_line_comparable` to True in
-# (NOTE) `normalize for diffing.py` (append " loggable" to the file names).
+# (NOTE) `normalize for diffing.py` (afterwards, append " loggable" to the file names of
+# (NOTE) the exported files).
 
 f = contents (realpath ('featurebranch static normalized loggable.html'), encoding="mbcs").splitlines()
 m = contents (realpath ('masterbranch static normalized loggable.html'), encoding="mbcs").splitlines()
@@ -35,25 +36,25 @@ if len_f == len_m:
 	print(f'Both files have {len_f} lines')
 
 	differences = {}
-	for counter, f_line in enumerate(f):
-		m_line = m[counter]
+	for linenum, f_line in enumerate(f):
+		m_line = m[linenum]
 		if m_line != f_line:
-			diff = (m_line, f_line)
+			diff = m_line, f_line
 			if diff not in differences:
 				differences[diff] = 0
 			differences[diff] += 1
 
-	global_amount = 0
-	for amount in differences.values():
-		global_amount += amount
+	totalchanges = 0
+	for changes in differences.values():
+		totalchanges += changes
 
-	print(f'On average, every {round(len_f / global_amount)}th line changes')
-
+	print(f'On average, every {round(len_f / totalchanges)}th line changes')
+	
 	print('differences:')
-	for diff, amount in sorted(differences.items(), key=lambda x:x[1], reverse=True):
+	for diff, changes in sorted(differences.items(), key=lambda x:x[1], reverse=True):
 		m_line, f_line = diff
-		plural = 's' if amount > 1 else ''
-		print(f'  {amount} time{plural}: "{m_line}" becomes "{f_line}"')
+		plural = 's' if changes > 1 else ''
+		print(f'  {changes} time{plural}: "{m_line}" becomes "{f_line}"')
 
 else:
 	print('the files have a different amount of lines, so this script will probably only output nonsense')
