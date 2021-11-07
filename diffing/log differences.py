@@ -44,13 +44,10 @@ if len_f == len_m:
 				differences[diff] = 0
 			differences[diff] += 1
 
-	totalchanges = 0
-	for changes in differences.values():
-		totalchanges += changes
-
+	totalchanges = sum(differences.values())
 	print(f'On average, every {round(len_f / totalchanges)}th line changes')
 	
-	print('differences:')
+	print('Differences:')
 	for diff, changes in sorted(differences.items(), key=lambda x:x[1], reverse=True):
 		m_line, f_line = diff
 		plural = 's' if changes > 1 else ''
